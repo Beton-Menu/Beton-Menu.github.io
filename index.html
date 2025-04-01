@@ -3,161 +3,995 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BETON MENU</title>
+    <title>BETON | Меню</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary-color: #333;
+            --secondary-color: #777;
+            --accent-color: #8B4513;
+            --bg-color: #f5f5f0;
+            --paper-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="400" height="400" fill="%23f5f5f0"/><path d="M0 0h400v400H0z" fill="none" stroke="%23ddd" stroke-width="2" stroke-dasharray="5,5"/></svg>');
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f5f0e6;
-            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path opacity="0.05" d="M0 0 L100 0 L100 100 L0 100 Z" fill="%237a6b5f"/></svg>');
+            padding: 0;
+            box-sizing: border-box;
         }
-        
-        .gallery {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            background-image: var(--paper-texture);
+            color: var(--primary-color);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        
-        .gallery img {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            margin: 10px 0;
-            cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-        }
-        
-        .gallery img:hover {
-            transform: scale(1.01);
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
+
+        header {
+            background-color: rgba(245, 245, 240, 0.9);
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
             z-index: 100;
+            border-bottom: 1px solid #ddd;
         }
-        
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90vw;
-            max-height: 90vh;
-        }
-        
-        .modal-img {
-            max-width: 100%;
-            max-height: 80vh;
-            display: block;
+
+        .header-content {
+            max-width: 1200px;
             margin: 0 auto;
-        }
-        
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-        }
-        
-        .arrow {
-            position: fixed;
-            top: 50%;
-            font-size: 50px;
-            color: rgba(255,255,255,0);
-            cursor: pointer;
-            user-select: none;
-            padding: 20px;
-            transform: translateY(-50%);
-            transition: color 0.2s;
-            z-index: 101;
-        }
-        
-        .arrow:hover {
-            color: rgba(255,255,255,0.7);
-        }
-        
-        .prev {
-            left: 10px;
-        }
-        
-        .next {
-            right: 10px;
-        }
-        
-        footer {
+            padding: 0 20px;
             text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #666;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1.5rem;
+            padding: 0 20px;
+        }
+
+        .category-btn {
+            padding: 0.7rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            font-family: 'Georgia', serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 20px;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .menu-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .menu-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            text-align: center;
+            font-weight: normal;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background-color: var(--accent-color);
+        }
+
+        .menu-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .menu-column {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px dashed #ddd;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateX(5px);
+        }
+
+        .menu-item-name {
+            flex: 2;
+            font-weight: normal;
+        }
+
+        .menu-item-weight {
+            flex: 1;
+            text-align: right;
+            padding-right: 1rem;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .menu-item-price {
+            flex: 1;
+            text-align: right;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        footer {
+            background-color: rgba(245, 245, 240, 0.9);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-info {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .categories {
+                gap: 8px;
+            }
+            
+            .category-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="gallery">
-        <img src="Page-1.jpg" onclick="openModal(0)">
-        <img src="Page-2.jpg" onclick="openModal(1)">
-        <img src="Page-3.jpg" onclick="openModal(2)">
-        <img src="Page-4.jpg" onclick="openModal(3)">
-        <img src="Page-5.jpg" onclick="openModal(4)">
-    </div>
-    
-    <div id="modal" class="modal" onclick="closeModal()">
-        <span class="close" onclick="event.stopPropagation(); closeModal()">&times;</span>
-        <span class="arrow prev" onclick="event.stopPropagation(); prevImg()">&#10094;</span>
-        <span class="arrow next" onclick="event.stopPropagation(); nextImg()">&#10095;</span>
-        <div class="modal-content">
-            <img class="modal-img" id="modalImg">
+    <header>
+        <div class="header-content">
+            <h1>BETON</h1>
+            <p class="subtitle">Ресторан & Бар</p>
+            
+            <div class="categories">
+                <button class="category-btn active" data-category="starters">Холодные закуски</button>
+                <button class="category-btn" data-category="hot">Горячие блюда</button>
+                <button class="category-btn" data-category="soups">Супы</button>
+                <button class="category-btn" data-category="snacks">Нахлебники</button>
+                <button class="category-btn" data-category="desserts">ВерхосыткИ</button>
+                <button class="category-btn" data-category="infusions">Наливки</button>
+                <button class="category-btn" data-category="alcohol">Крепкий алкоголь</button>
+                <button class="category-btn" data-category="wine">Вино</button>
+                <button class="category-btn" data-category="cocktails">Коктейли</button>
+            </div>
         </div>
-    </div>
-    
+    </header>
+
+    <main>
+        <!-- Холодные закуски -->
+        <section id="starters" class="menu-section active">
+            <h2 class="section-title">Холодные закуски</h2>
+            <div class="menu-columns">
+                <div class="menu-column">
+                    <div class="menu-item">
+                        <div class="menu-item-name">Огурцы маринованные</div>
+                        <div class="menu-item-weight">100гр.</div>
+                        <div class="menu-item-price">150</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Квашеная капуста</div>
+                        <div class="menu-item-weight">140гр.</div>
+                        <div class="menu-item-price">180</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Икра баклажанная</div>
+                        <div class="menu-item-weight">140гр.</div>
+                        <div class="menu-item-price">200</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Маринованные опята</div>
+                        <div class="menu-item-weight">140гр.</div>
+                        <div class="menu-item-price">260</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Форшмак из сельди</div>
+                        <div class="menu-item-weight">150гр.</div>
+                        <div class="menu-item-price">280</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Оливки и маслины</div>
+                        <div class="menu-item-weight">70гр.</div>
+                        <div class="menu-item-price">295</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Домашняя буженина с хреном</div>
+                        <div class="menu-item-weight">110гр.</div>
+                        <div class="menu-item-price">390</div>
+                    </div>
+                </div>
+                <div class="menu-column">
+                    <div class="menu-item">
+                        <div class="menu-item-name">Брускетта с форелью</div>
+                        <div class="menu-item-weight">100гр.</div>
+                        <div class="menu-item-price">400</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Такое по-Мексикански</div>
+                        <div class="menu-item-weight">130гр.</div>
+                        <div class="menu-item-price">450</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Такое с креветкой в соусе манго-чили</div>
+                        <div class="menu-item-weight">130гр.</div>
+                        <div class="menu-item-price">450</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Такое с курицей в медово-горчицом соусе</div>
+                        <div class="menu-item-weight">160гр.</div>
+                        <div class="menu-item-price">420</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Говядина ростбиф</div>
+                        <div class="menu-item-weight">110гр.</div>
+                        <div class="menu-item-price">490</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Язык телячий со сметаной</div>
+                        <div class="menu-item-weight">160гр.</div>
+                        <div class="menu-item-price">790</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Мясная тарелка</div>
+                        <div class="menu-item-weight">200гр.</div>
+                        <div class="menu-item-price">470</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Паштет из утки с луковым конфитюром</div>
+                        <div class="menu-item-weight"></div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Горячие блюда -->
+        <section id="hot" class="menu-section">
+            <h2 class="section-title">Горячие блюда</h2>
+            <div class="menu-columns">
+                <div class="menu-column">
+                    <div class="menu-item">
+                        <div class="menu-item-name">Картофель печёный с розмарином</div>
+                        <div class="menu-item-weight">300гр.</div>
+                        <div class="menu-item-price">200</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Макароны с тушёнкой</div>
+                        <div class="menu-item-weight">250гр.</div>
+                        <div class="menu-item-price">280</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Фаршированные яйца</div>
+                        <div class="menu-item-weight">150гр.</div>
+                        <div class="menu-item-price">290</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Блины с ветчиной и сыром</div>
+                        <div class="menu-item-weight">200гр.</div>
+                        <div class="menu-item-price">300</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Блины с курицей и грибами</div>
+                        <div class="menu-item-weight">200гр.</div>
+                        <div class="menu-item-price">300</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Котлета из курицы с пюре</div>
+                        <div class="menu-item-weight">250гр.</div>
+                        <div class="menu-item-price">300</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Драники с беконом</div>
+                        <div class="menu-item-weight">280гр.</div>
+                        <div class="menu-item-price">350</div>
+                    </div>
+                </div>
+                <div class="menu-column">
+                    <div class="menu-item">
+                        <div class="menu-item-name">Сковорода по охотничьи</div>
+                        <div class="menu-item-weight">250гр.</div>
+                        <div class="menu-item-price">380</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Шашлык куриный с котл-слоу</div>
+                        <div class="menu-item-weight">250гр.</div>
+                        <div class="menu-item-price">380</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Говядина под сладким соусом чили</div>
+                        <div class="menu-item-weight">235гр.</div>
+                        <div class="menu-item-price">430</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Бифитское говяжий с яйцом и брусничным кофитором</div>
+                        <div class="menu-item-weight">300гр.</div>
+                        <div class="menu-item-price">550</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Судак с овощами гриль</div>
+                        <div class="menu-item-weight">220гр.</div>
+                        <div class="menu-item-price">560</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Пельмени фри с кетчупом</div>
+                        <div class="menu-item-weight">310гр.</div>
+                        <div class="menu-item-price">350</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Пельмени ручной лепки отварные со сметаной</div>
+                        <div class="menu-item-weight">350гр.</div>
+                        <div class="menu-item-price">580</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Супы -->
+        <section id="soups" class="menu-section">
+            <h2 class="section-title">Супы</h2>
+            <div class="menu-columns">
+                <div class="menu-column">
+                    <div class="menu-item">
+                        <div class="menu-item-name">Борщ</div>
+                        <div class="menu-item-weight">350гр.</div>
+                        <div class="menu-item-price">390</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Солянка мясная</div>
+                        <div class="menu-item-weight">350гр.</div>
+                        <div class="menu-item-price">390</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Нахлебники -->
+        <section id="snacks" class="menu-section">
+            <h2 class="section-title">Нахлебники</h2>
+            <div class="menu-columns">
+                <div class="menu-column">
+                    <div class="menu-item">
+                        <div class="menu-item-name">По домашнему</div>
+                        <div class="menu-item-weight">100гр.</div>
+                        <div class="menu-item-price">180</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">С сельдью и маринованным луком</div>
+                        <div class="menu-item-weight">90гр.</div>
+                        <div class="menu-item-price">200</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Со шпротами и свежим огурцом</div>
+                        <div class="menu-item-weight">90гр.</div>
+                        <div class="menu-item-price">200</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">С салом и горчицей</div>
+                        <div class="menu-item-weight">70гр.</div>
+                        <div class="menu-item-price">200</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">С "Московской" колбасой</div>
+                        <div class="menu-item-weight">90гр.</div>
+                        <div class="menu-item-price">200</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">С печёным перцем гриль</div>
+                        <div class="menu-item-weight">90гр.</div>
+                        <div class="menu-item-price">200</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">С бужениной и хреном</div>
+                        <div class="menu-item-weight">90гр.</div>
+                        <div class="menu-item-price">230</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Ремесленный хлеб с пряным маслом</div>
+                        <div class="menu-item-weight">240гр.</div>
+                        <div class="menu-item-price">180</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ВерхосыткИ -->
+        <section id="desserts" class="menu-section">
+            <h2 class="section-title">ВерхосыткИ</h2>
+            <div class="menu-columns">
+                <div class="menu-column">
+                    <div class="menu-item">
+                        <div class="menu-item-name">Шарик мороженого</div>
+                        <div class="menu-item-weight">80гр.</div>
+                        <div class="menu-item-price">120</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Блины со ступенькой</div>
+                        <div class="menu-item-weight">130гр.</div>
+                        <div class="menu-item-price">180</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Вафельные трубочки</div>
+                        <div class="menu-item-weight">100гр.</div>
+                        <div class="menu-item-price">180</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Пирожное "Картошка"</div>
+                        <div class="menu-item-weight">100гр.</div>
+                        <div class="menu-item-price">180</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Наливки -->
+        <section id="infusions" class="menu-section">
+            <h2 class="section-title">Наливки</h2>
+            <div class="menu-columns">
+                <div class="menu-column">
+                    <h3 class="menu-subtitle">ЯГОДНЫЕ 50 мл</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Арбуз</div>
+                        <div class="menu-item-price">250</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Брусника</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Бузина</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Вишня</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Вишня-Миндаль</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Дикая роза</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Ежевика</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Жимолость</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Кизил</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Клубника-Базилик</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Клубника-Мята</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Клюква</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Клюква-Розмарин</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Малина-Имбирь</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Облепиха</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Пьяная ягода</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Ревень</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Сморода красная</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Сморода чёрная</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Цукаты</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Черника</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Чернослив</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                </div>
+                <div class="menu-column">
+                    <h3 class="menu-subtitle">ФРУКТОВЫЕ 50 мл</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Абрикос</div>
+                        <div class="menu-item-price">250</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Ананас</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Апельсин</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Банан</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Грейпфрут</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Груша</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Груша-Банан</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Гуава</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Дыня</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Инжир</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Киви</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Кокос</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Лайм</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Лимонелло</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Личи</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Манго</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Мандарин</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Маракуйа</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Персик</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Ранет</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Тропико</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Финики</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Яблоко</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Крепкий алкоголь -->
+        <section id="alcohol" class="menu-section">
+            <h2 class="section-title">Крепкий алкоголь</h2>
+            <div class="menu-columns">
+                <div class="menu-column">
+                    <h3 class="menu-subtitle">ДИСТИЛЛЯТ 50 мл</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Косогоров №2</div>
+                        <div class="menu-item-price">149</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Самогон Хлебный</div>
+                        <div class="menu-item-price">335</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Самогон Хандса</div>
+                        <div class="menu-item-price">490</div>
+                    </div>
+
+                    <h3 class="menu-subtitle">ВОДКА 50 мл</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Морозная горка</div>
+                        <div class="menu-item-price">130</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">MORUS Плодовая Груша</div>
+                        <div class="menu-item-price">300</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">MORUS Плодовая Дыня</div>
+                        <div class="menu-item-price">300</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Finlandia</div>
+                        <div class="menu-item-price">390</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Сливовича</div>
+                        <div class="menu-item-price">420</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Kostenkorva</div>
+                        <div class="menu-item-price">440</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Sobolinaya de France</div>
+                        <div class="menu-item-price">495</div>
+                    </div>
+                </div>
+                <div class="menu-column">
+                    <h3 class="menu-subtitle">ВЕРЕСК 25 мл</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Горькая Тверская</div>
+                        <div class="menu-item-price">100</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Старый Кашин</div>
+                        <div class="menu-item-price">119</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Старый Травник</div>
+                        <div class="menu-item-price">119</div>
+                    </div>
+
+                    <h3 class="menu-subtitle">ВИСКИ 50мл</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Barclays Blended</div>
+                        <div class="menu-item-price">300</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">The Whistler Calvados Cask</div>
+                        <div class="menu-item-price">685</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Akashi Blended</div>
+                        <div class="menu-item-price">760</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Bowsaw Bourbon Whiskey</div>
+                        <div class="menu-item-price">850</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Chivas Regal</div>
+                        <div class="menu-item-price">850</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Paul John Nirvana</div>
+                        <div class="menu-item-price">890</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Laphroaig Select Cask</div>
+                        <div class="menu-item-price">1180</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Вино -->
+        <section id="wine" class="menu-section">
+            <h2 class="section-title">Вино</h2>
+            <div class="menu-columns">
+                <div class="menu-column">
+                    <h3 class="menu-subtitle">КРАСНОЕ 150 мл</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Breleiro Rose Semidry</div>
+                        <div class="menu-item-price">350</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Malbec Uma Wine Bar Dry</div>
+                        <div class="menu-item-price">350</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">ZB Cabernet Sauvignon Dry</div>
+                        <div class="menu-item-price">385</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Aresti Estate Selection Semidry</div>
+                        <div class="menu-item-price">490</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Montepulciano d'Abruzzo Dry</div>
+                        <div class="menu-item-price">570</div>
+                    </div>
+
+                    <h3 class="menu-subtitle">КРЕПЛЕНОЕ 100 мл</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Мадера Кымская</div>
+                        <div class="menu-item-price">220</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Крымский Парус</div>
+                        <div class="menu-item-price">250</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Нортвейн Крымский белое</div>
+                        <div class="menu-item-price">300</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Херес Массандра белое</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Чёрный полковник</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Корке Fine Tawny Porto</div>
+                        <div class="menu-item-price">515</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Корке Fine White Porto</div>
+                        <div class="menu-item-price">590</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Корке Fine Ruby Porto</div>
+                        <div class="menu-item-price">555</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Alexandro Sherry Fino</div>
+                        <div class="menu-item-price">650</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Alexandro Sherry Pioroso</div>
+                        <div class="menu-item-price">685</div>
+                    </div>
+                </div>
+                <div class="menu-column">
+                    <h3 class="menu-subtitle">ИГРИСТОЕ 150 мл</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-name">ZB Moscato White Semidry</div>
+                        <div class="menu-item-price">370</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">ZB Spumante White Brut</div>
+                        <div class="menu-item-price">370</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Zb Spumante White Semidry</div>
+                        <div class="menu-item-price">370</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">ZB Frizzante Rose Semidry</div>
+                        <div class="menu-item-price">370</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Tosti Prosecco Dry</div>
+                        <div class="menu-item-price">690</div>
+                    </div>
+
+                    <h3 class="menu-subtitle">БЕЛОЕ 150 мл</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Breleiro White Semidry</div>
+                        <div class="menu-item-price">350</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">ZB Wine Muscat Semisweet</div>
+                        <div class="menu-item-price">350</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Zb Wine Riesling Semidry</div>
+                        <div class="menu-item-price">360</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Mucho Mas White Dry</div>
+                        <div class="menu-item-price">390</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Коктейли -->
+        <section id="cocktails" class="menu-section">
+            <h2 class="section-title">Коктейли</h2>
+            <div class="menu-columns">
+                <div class="menu-column">
+                    <div class="menu-item">
+                        <div class="menu-item-name">Байкал либре</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Белый тверской</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Гватемальский Коммунист</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Гватемальский Капиталист</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Дайкири Бетон</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Космополитен Бетон</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Ревель Сиритц</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Тверской мул</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Секс на голом бетоне</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item" style="font-style: italic;">
+                        <div class="menu-item-name">Оцените наши коктейли</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer>
-        <div>ул.Новоторжская, 12Б, С1</div>
-        <div><a href="tel:+74822453969" style="color: #444;">+7 (482) 245-39-69</a></div>
-        <div>© 2025 BETON</div>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>ул. Новоторжская, 12Б, С1</p>
+                <p>+7(482) 245-39-69</p>
+            </div>
+            <div class="copyright">
+                <p>© BETON</p>
+            </div>
+        </div>
     </footer>
 
     <script>
-        const images = ['Page-1.jpg', 'Page-2.jpg', 'Page-3.jpg', 'Page-4.jpg', 'Page-5.jpg'];
-        let currentIndex = 0;
-        
-        function openModal(index) {
-            currentIndex = index;
-            document.getElementById('modal').style.display = 'block';
-            document.getElementById('modalImg').src = images[currentIndex];
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        
-        function nextImg() {
-            currentIndex = (currentIndex + 1) % images.length;
-            document.getElementById('modalImg').src = images[currentIndex];
-        }
-        
-        function prevImg() {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            document.getElementById('modalImg').src = images[currentIndex];
-        }
-        
-        document.addEventListener('keydown', function(e) {
-            if (document.getElementById('modal').style.display === 'block') {
-                if (e.key === 'Escape') closeModal();
-                if (e.key === 'ArrowRight') nextImg();
-                if (e.key === 'ArrowLeft') prevImg();
-            }
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const menuSections = document.querySelectorAll('.menu-section');
+
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Удаляем активный класс у всех кнопок
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляем активный класс к текущей кнопке
+                    this.classList.add('active');
+                    
+                    // Скрываем все разделы меню
+                    menuSections.forEach(section => section.classList.remove('active'));
+                    
+                    // Показываем выбранный раздел
+                    const category = this.getAttribute('data-category');
+                    document.getElementById(category).classList.add('active');
+                });
+            });
         });
     </script>
 </body>
