@@ -12,7 +12,9 @@
             padding: 0;
             color: #333;
             line-height: 1.6;
-            background: #f5f0e6;
+            background-color: #f3e9d8;
+            background-image: linear-gradient(to bottom, rgba(243, 233, 216, 0.9), rgba(243, 233, 216, 0.9)),
+                              url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path opacity="0.05" d="M0 0 L100 0 L100 100 L0 100 Z" fill="%237a6b5f"/></svg>');
         }
         
         .container {
@@ -30,17 +32,18 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
-            padding: 0 10px;
+            gap: 25px;
+            padding: 0 15px;
         }
         
         .gallery-item {
             position: relative;
             width: 100%;
-            background: #f5f0e6;
-            padding: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            background: #f3e9d8;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             border-radius: 2px;
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
         .gallery img {
@@ -52,11 +55,11 @@
             margin: 0 auto;
             transition: transform 0.3s ease;
             cursor: zoom-in;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         
         .gallery img:hover {
-            transform: scale(1.02);
+            transform: scale(1.01);
         }
         
         /* Модальное окно */
@@ -68,7 +71,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(0,0,0,0.92);
             overflow: hidden;
             touch-action: none;
         }
@@ -81,15 +84,20 @@
             max-width: 95%;
             max-height: 95%;
             object-fit: contain;
-            background: #f5f0e6;
+            background: #f3e9d8;
             padding: 15px;
             transition: transform 0.3s ease;
             cursor: zoom-out;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
         }
         
         .modal-content.zoomed {
-            transform: translate(-50%, -50%) scale(1.5);
+            transform: translate(-50%, -50%) scale(1.8);
             cursor: grab;
+        }
+        
+        .modal-content.zoomed:hover {
+            cursor: grabbing;
         }
         
         .close {
@@ -102,7 +110,8 @@
             cursor: pointer;
             z-index: 1001;
             opacity: 0.7;
-            transition: opacity 0.3s;
+            transition: opacity 0.2s;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
         }
         
         .close:hover {
@@ -117,34 +126,35 @@
             font-size: 40px;
             cursor: pointer;
             z-index: 1001;
-            padding: 20px;
+            padding: 40px 20px;
             user-select: none;
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.2s;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
         }
         
         .modal:hover .nav-arrow {
-            opacity: 0.7;
+            opacity: 0;
         }
         
         .nav-arrow:hover {
-            opacity: 1 !important;
+            opacity: 0.7 !important;
         }
         
         .prev {
-            left: 10px;
+            left: 0;
         }
         
         .next {
-            right: 10px;
+            right: 0;
         }
         
         /* Футер */
         footer {
-            background: rgba(245, 240, 230, 0.9);
+            background: rgba(243, 233, 216, 0.9);
             padding: 30px 0;
             border-top: 1px solid #d9d1c0;
-            margin-top: 20px;
+            margin-top: 30px;
         }
         
         .footer-content {
@@ -206,7 +216,7 @@
                 <div><a href="tel:‪+74822453969‬" style="color: #444; text-decoration: none;">‪+7 (482) 245-39-69‬</a></div>
             </div>
             <div class="copyright">
-                © 2024 BETON
+                © 2025 BETON
             </div>
         </div>
     </footer>
@@ -215,6 +225,7 @@
         let slideIndex = 0;
         const images = ["Page-1.jpg", "Page-2.jpg", "Page-3.jpg", "Page-4.jpg", "Page-5.jpg"];
         let isZoomed = false;
+        let startX, startY, posX = 0, posY = 0, isDragging = false;
         
         function openModal(index) {
             slideIndex = index;
@@ -224,6 +235,7 @@
             modalImg.src = images[slideIndex];
             modalImg.classList.remove("zoomed");
             isZoomed = false;
+            posX = posY = 0;
             document.body.style.overflow = "hidden";
         }
         
@@ -238,11 +250,14 @@
             if (isZoomed) return;
             
             slideIndex += n;
-            if (slideIndex >= images.length) { slideIndex = 0; }
-            if (slideIndex < 0) { slideIndex = images.length - 1; }
-            document.getElementById("modalImage").src = images[slideIndex];
-            document.getElementById("modalImage").classList.remove("zoomed");
+            if (slideIndex >= images.length) slideIndex = 0;
+            if (slideIndex < 0) slideIndex = images.length - 1;
+            
+            const modalImg = document.getElementById("modalImage");
+            modalImg.src = images[slideIndex];
+            modalImg.classList.remove("zoomed");
             isZoomed = false;
+            posX = posY = 0;
         }
         
         function zoomImage(e) {
@@ -253,6 +268,8 @@
                 modalImg.classList.remove("zoomed");
                 isZoomed = false;
                 modalImg.style.cursor = "zoom-out";
+                posX = posY = 0;
+                modalImg.style.transform = "translate(-50%, -50%)";
             } else {
                 modalImg.classList.add("zoomed");
                 isZoomed = true;
@@ -260,17 +277,14 @@
             }
         }
         
-        // Перемещение увеличенного изображения
-        let posX = 0, posY = 0;
-        let isDragging = false;
-        let startX, startY;
-        
+        // Drag functionality
         document.getElementById("modalImage").addEventListener('mousedown', function(e) {
             if (isZoomed) {
                 isDragging = true;
                 startX = e.clientX - posX;
                 startY = e.clientY - posY;
                 this.style.cursor = 'grabbing';
+                e.preventDefault();
             }
         });
         
@@ -281,7 +295,7 @@
             posY = e.clientY - startY;
             
             const modalImg = document.getElementById("modalImage");
-            modalImg.style.transform = translate(-50%, -50%) scale(1.5) translate(${posX/1.5}px, ${posY/1.5}px);
+            modalImg.style.transform = translate(-50%, -50%) scale(1.8) translate(${posX/1.8}px, ${posY/1.8}px);
         });
         
         document.addEventListener('mouseup', function() {
@@ -291,51 +305,19 @@
             }
         });
         
-        // Управление с клавиатуры
-        document.onkeydown = function(evt) {
-            evt = evt || window.event;
-            if (evt.keyCode == 27) { // ESC
-                document.getElementById("myModal").style.display = "none";
-                document.body.style.overflow = "auto";
-            }
-            if (!isZoomed) {
-                if (evt.keyCode == 37) { plusSlides(-1); } // Стрелка влево
-                if (evt.keyCode == 39) { plusSlides(1); } // Стрелка вправо
-            }
-        };
-        
-        // Свайпы для мобильных устройств
+        // Touch events for mobile
         let touchStartX = 0;
-        let touchEndX = 0;
-        
-        document.querySelector('.modal').addEventListener('touchstart', function(e) {
-            if (!isZoomed) {
-                touchStartX = e.changedTouches[0].screenX;
-            }
-        }, false);
-        
-        document.querySelector('.modal').addEventListener('touchend', function(e) {
-            if (!isZoomed) {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }
-        }, false);
-        
-        function handleSwipe() {
-            if (touchEndX < touchStartX - 50) {
-                plusSlides(1);
-            }
-            if (touchEndX > touchStartX + 50) {
-                plusSlides(-1);
-            }
-        }
-        
-        // Зум для мобильных устройств
         let initialDistance = null;
         
         document.getElementById("modalImage").addEventListener('touchstart', function(e) {
-            if (e.touches.length === 2) {
-                e.preventDefault();
+            if (e.touches.length === 1) {
+                touchStartX = e.touches[0].clientX;
+                if (isZoomed) {
+                    isDragging = true;
+                    startX = e.touches[0].clientX - posX;
+                    startY = e.touches[0].clientY - posY;
+                }
+            } else if (e.touches.length === 2) {
                 initialDistance = Math.hypot(
                     e.touches[0].clientX - e.touches[1].clientX,
                     e.touches[0].clientY - e.touches[1].clientY
@@ -344,7 +326,12 @@
         }, { passive: false });
         
         document.getElementById("modalImage").addEventListener('touchmove', function(e) {
-            if (e.touches.length === 2) {
+            if (e.touches.length === 1 && isZoomed) {
+                e.preventDefault();
+                posX = e.touches[0].clientX - startX;
+                posY = e.touches[0].clientY - startY;
+                this.style.transform = translate(-50%, -50%) scale(1.8) translate(${posX/1.8}px, ${posY/1.8}px);
+            } else if (e.touches.length === 2) {
                 e.preventDefault();
                 const currentDistance = Math.hypot(
                     e.touches[0].clientX - e.touches[1].clientX,
@@ -358,9 +345,31 @@
             }
         }, { passive: false });
         
-        document.getElementById("modalImage").addEventListener('touchend', function() {
-            initialDistance = null;
+        document.getElementById("modalImage").addEventListener('touchend', function(e) {
+            if (e.touches.length === 0) {
+                isDragging = false;
+                initialDistance = null;
+            } else if (e.touches.length === 1) {
+                if (!isZoomed) {
+                    const touchEndX = e.changedTouches[0].clientX;
+                    if (touchEndX < touchStartX - 50) plusSlides(1);
+                    if (touchEndX > touchStartX + 50) plusSlides(-1);
+                }
+            }
         });
+        
+        // Keyboard controls
+        document.onkeydown = function(e) {
+            e = e || window.event;
+            if (e.keyCode == 27) { // ESC
+                document.getElementById("myModal").style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+            if (!isZoomed) {
+                if (e.keyCode == 37) plusSlides(-1); // Left arrow
+                if (e.keyCode == 39) plusSlides(1);  // Right arrow
+            }
+        };
     </script>
 </body>
 </html>
