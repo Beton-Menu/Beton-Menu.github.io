@@ -12,7 +12,7 @@
             padding: 0;
             color: #333;
             line-height: 1.6;
-            background: #fff;
+            background: #f5f0e6; /* Крафтовый бумажный фон */
         }
         
         .container {
@@ -35,29 +35,66 @@
         
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Увеличил минимальную ширину */
+            gap: 25px; /* Больше отступ между изображениями */
+            padding: 0 15px; /* Отступы по краям */
         }
         
         .gallery img {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 2px;
-            transition: transform 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            height: 280px; /* Увеличил высоту */
+            object-fit: contain; /* Показываем все изображение без обрезки */
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            background: #fff; /* Белый фон для изображений */
+            padding: 10px; /* Отступ внутри рамки */
+            cursor: pointer;
         }
         
-        .gallery img:hover {
-            transform: scale(1.02);
+        .gallery img:hover, .gallery img:active {
+            transform: scale(1.05); /* Увеличение при наведении/нажатии */
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* Модальное окно для полноэкранного просмотра */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            text-align: center;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
         }
         
         /* Футер */
         footer {
-            background: #f8f8f8;
+            background: rgba(245, 240, 230, 0.8); /* Полупрозрачный бумажный фон */
             padding: 40px 0;
             margin-top: 60px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #d9d1c0;
         }
         
         .footer-content {
@@ -89,14 +126,20 @@
         <!-- Галерея из 5 изображений -->
         <section class="gallery">
             <div class="gallery-grid">
-                <img src="Page-1.jpg">
-                <img src="Page-2.jpg">
-                <img src="Page-3.jpg">
-                <img src="Page-4.jpg">
-                <img src="Page-5.jpg">
+                <img src="Page-1.jpg" onclick="openModal(this)">
+                <img src="Page-2.jpg" onclick="openModal(this)">
+                <img src="Page-3.jpg" onclick="openModal(this)">
+                <img src="Page-4.jpg" onclick="openModal(this)">
+                <img src="Page-5.jpg" onclick="openModal(this)">
             </div>
         </section>
     </main>
+    
+    <!-- Модальное окно -->
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="event.stopPropagation(); closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
     
     <!-- Футер -->
     <footer>
@@ -111,5 +154,28 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Функция для открытия модального окна
+        function openModal(img) {
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("modalImage");
+            modal.style.display = "block";
+            modalImg.src = img.src;
+        }
+        
+        // Функция для закрытия модального окна
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+        
+        // Закрытие при нажатии ESC
+        document.onkeydown = function(evt) {
+            evt = evt || window.event;
+            if (evt.keyCode == 27) {
+                closeModal();
+            }
+        };
+    </script>
 </body>
 </html>
