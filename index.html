@@ -12,8 +12,8 @@
             padding: 0;
             color: #333;
             line-height: 1.6;
-            background-color: #f2e8d5;
-            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path opacity="0.03" d="M0 0 L100 0 L100 100 L0 100 Z" fill="%236b5d4d"/><path opacity="0.03" d="M10 10 L90 10 L90 90 L10 90 Z" fill="%236b5d4d"/></svg>');
+            background-color: #f0e5d0;
+            background-image: url('data:image/svg+xml;utf8,<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.05 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/><rect x="20" y="20" width="560" height="560" fill="none" stroke="%23c0b7a5" stroke-width="2" stroke-dasharray="5,3"/></svg>');
         }
         
         .container {
@@ -25,24 +25,24 @@
         /* Галерея */
         .gallery {
             margin: 0;
-            padding: 20px 0;
+            padding: 30px 0;
         }
         
         .gallery-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 25px;
-            padding: 0 15px;
+            gap: 30px;
+            padding: 0 20px;
         }
         
         .gallery-item {
             position: relative;
             width: 100%;
-            background: #f2e8d5;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            border-radius: 2px;
-            border: 1px solid rgba(0,0,0,0.05);
+            background: #f0e5d0;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-radius: 3px;
+            border: 1px solid rgba(0,0,0,0.1);
         }
         
         .gallery img {
@@ -54,11 +54,11 @@
             margin: 0 auto;
             transition: transform 0.3s ease;
             cursor: pointer;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
         .gallery img:hover {
-            transform: scale(1.01);
+            transform: scale(1.02);
         }
         
         /* Модальное окно */
@@ -70,7 +70,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.95);
+            background-color: rgba(0,0,0,0.96);
             overflow: hidden;
             touch-action: none;
         }
@@ -83,11 +83,11 @@
             max-width: 95%;
             max-height: 95%;
             object-fit: contain;
-            background: #f2e8d5;
-            padding: 15px;
+            background: #f0e5d0;
+            padding: 20px;
             transition: transform 0.3s ease;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            box-shadow: 0 0 25px rgba(0,0,0,0.4);
         }
         
         .modal-content.zoomed {
@@ -97,16 +97,16 @@
         
         .close {
             position: fixed;
-            top: 20px;
-            right: 30px;
+            top: 25px;
+            right: 35px;
             color: white;
-            font-size: 40px;
+            font-size: 45px;
             font-weight: bold;
             cursor: pointer;
             z-index: 1001;
-            opacity: 0.7;
+            opacity: 0.8;
             transition: opacity 0.2s;
-            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            text-shadow: 0 0 8px rgba(0,0,0,0.7);
         }
         
         .close:hover {
@@ -118,14 +118,14 @@
             top: 50%;
             transform: translateY(-50%);
             color: white;
-            font-size: 40px;
+            font-size: 45px;
             cursor: pointer;
             z-index: 1001;
-            padding: 40px 20px;
+            padding: 50px 25px;
             user-select: none;
             opacity: 0;
             transition: opacity 0.2s;
-            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            text-shadow: 0 0 8px rgba(0,0,0,0.7);
         }
         
         .modal:hover .nav-arrow {
@@ -133,7 +133,7 @@
         }
         
         .nav-arrow:hover {
-            opacity: 0.7 !important;
+            opacity: 0.8 !important;
         }
         
         .prev {
@@ -146,28 +146,28 @@
         
         /* Футер */
         footer {
-            background: rgba(242, 232, 213, 0.9);
-            padding: 30px 0;
-            border-top: 1px solid #d9d1c0;
-            margin-top: 30px;
+            background: rgba(240, 229, 208, 0.95);
+            padding: 35px 0;
+            border-top: 1px solid #c0b7a5;
+            margin-top: 40px;
         }
         
         .footer-content {
             max-width: 600px;
             margin: 0 auto;
             text-align: center;
-            padding: 0 20px;
+            padding: 0 25px;
         }
         
         .contact-info {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             line-height: 1.8;
         }
         
         .copyright {
             color: #777;
             font-size: 0.9rem;
-            margin-top: 15px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -217,23 +217,37 @@
     </footer>
 
     <script>
-        let slideIndex = 0;
-        const images = ["Page-1.jpg", "Page-2.jpg", "Page-3.jpg", "Page-4.jpg", "Page-5.jpg"];
-        let isZoomed = false;
-        let startX, startY, posX = 0, posY = 0, isDragging = false;
+        // Массив изображений
+        const images = [
+            "Page-1.jpg",
+            "Page-2.jpg",
+            "Page-3.jpg",
+            "Page-4.jpg",
+            "Page-5.jpg"
+        ];
         
-        function openModal(index) {
-            slideIndex = index;
+        let currentSlide = 0;
+        let isZoomed = false;
+        let isDragging = false;
+        let dragStartX = 0, dragStartY = 0, dragOffsetX = 0, dragOffsetY = 0;
+        
+        // Открытие модального окна
+        function openModal(slideIndex) {
+            currentSlide = slideIndex;
             const modal = document.getElementById("myModal");
             const modalImg = document.getElementById("modalImage");
+            
             modal.style.display = "block";
-            modalImg.src = images[slideIndex];
+            modalImg.src = images[currentSlide];
             modalImg.classList.remove("zoomed");
             isZoomed = false;
-            posX = posY = 0;
+            dragOffsetX = dragOffsetY = 0;
+            
+            // Блокировка скролла страницы
             document.body.style.overflow = "hidden";
         }
         
+        // Закрытие модального окна
         function closeModal(e) {
             if (e.target.classList.contains('modal') || e.target.classList.contains('close')) {
                 document.getElementById("myModal").style.display = "none";
@@ -241,56 +255,69 @@
             }
         }
         
+        // Переключение слайдов
         function plusSlides(n) {
             if (isZoomed) return;
             
-            slideIndex += n;
-            if (slideIndex >= images.length) slideIndex = 0;
-            if (slideIndex < 0) slideIndex = images.length - 1;
+            currentSlide += n;
+            
+            // Циклическая навигация
+            if (currentSlide >= images.length) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = images.length - 1;
+            }
             
             const modalImg = document.getElementById("modalImage");
-            modalImg.src = images[slideIndex];
+            modalImg.src = images[currentSlide];
             modalImg.classList.remove("zoomed");
             isZoomed = false;
-            posX = posY = 0;
+            dragOffsetX = dragOffsetY = 0;
         }
         
+        // Увеличение/уменьшение изображения
         function zoomImage(e) {
             e.stopPropagation();
             const modalImg = document.getElementById("modalImage");
             
             if (isZoomed) {
+                // Возврат к нормальному размеру
                 modalImg.classList.remove("zoomed");
                 isZoomed = false;
                 modalImg.style.cursor = "pointer";
-                posX = posY = 0;
+                dragOffsetX = dragOffsetY = 0;
                 modalImg.style.transform = "translate(-50%, -50%)";
             } else {
+                // Увеличение изображения
                 modalImg.classList.add("zoomed");
                 isZoomed = true;
                 modalImg.style.cursor = "grab";
             }
         }
         
-        // Drag functionality
+        // Обработчики для перетаскивания изображения
         document.getElementById("modalImage").addEventListener('mousedown', function(e) {
             if (isZoomed) {
                 isDragging = true;
-                startX = e.clientX - posX;
-                startY = e.clientY - posY;
+                dragStartX = e.clientX - dragOffsetX;
+                dragStartY = e.clientY - dragOffsetY;
                 this.style.cursor = 'grabbing';
                 e.preventDefault();
             }
         });
         
         document.addEventListener('mousemove', function(e) {
-            if (!isDragging) return;
+            if (!isDragging || !isZoomed) return;
             
-            posX = e.clientX - startX;
-            posY = e.clientY - startY;
+            dragOffsetX = e.clientX - dragStartX;
+            dragOffsetY = e.clientY - dragStartY;
             
             const modalImg = document.getElementById("modalImage");
-            modalImg.style.transform = translate(-50%, -50%) scale(1.8) translate(${posX/1.8}px, ${posY/1.8}px);
+            modalImg.style.transform = `
+                translate(-50%, -50%) 
+                scale(1.8) 
+                translate(${dragOffsetX/1.8}px, ${dragOffsetY/1.8}px)
+            `;
         });
         
         document.addEventListener('mouseup', function() {
@@ -300,22 +327,22 @@
             }
         });
         
-        // Touch events for mobile
+        // Обработчики для мобильных устройств
         let touchStartX = 0;
-        let initialDistance = null;
+        let pinchStartDistance = 0;
         
         document.getElementById("modalImage").addEventListener('touchstart', function(e) {
             if (e.touches.length === 1) {
                 touchStartX = e.touches[0].clientX;
                 if (isZoomed) {
                     isDragging = true;
-                    startX = e.touches[0].clientX - posX;
-                    startY = e.touches[0].clientY - posY;
+                    dragStartX = e.touches[0].clientX - dragOffsetX;
+                    dragStartY = e.touches[0].clientY - dragOffsetY;
                 }
             } else if (e.touches.length === 2) {
-                initialDistance = Math.hypot(
-                    e.touches[0].clientX - e.touches[1].clientX,
-                    e.touches[0].clientY - e.touches[1].clientY
+                pinchStartDistance = getDistance(
+                    e.touches[0].clientX, e.touches[0].clientY,
+                    e.touches[1].clientX, e.touches[1].clientY
                 );
             }
         }, { passive: false });
@@ -323,18 +350,22 @@
         document.getElementById("modalImage").addEventListener('touchmove', function(e) {
             if (e.touches.length === 1 && isZoomed) {
                 e.preventDefault();
-                posX = e.touches[0].clientX - startX;
-                posY = e.touches[0].clientY - startY;
-                this.style.transform = translate(-50%, -50%) scale(1.8) translate(${posX/1.8}px, ${posY/1.8}px);
+                dragOffsetX = e.touches[0].clientX - dragStartX;
+                dragOffsetY = e.touches[0].clientY - dragStartY;
+                this.style.transform = `
+                    translate(-50%, -50%) 
+                    scale(1.8) 
+                    translate(${dragOffsetX/1.8}px, ${dragOffsetY/1.8}px)
+                `;
             } else if (e.touches.length === 2) {
                 e.preventDefault();
-                const currentDistance = Math.hypot(
-                    e.touches[0].clientX - e.touches[1].clientX,
-                    e.touches[0].clientY - e.touches[1].clientY
+                const currentDistance = getDistance(
+                    e.touches[0].clientX, e.touches[0].clientY,
+                    e.touches[1].clientX, e.touches[1].clientY
                 );
                 
-                if (initialDistance) {
-                    const scale = currentDistance / initialDistance;
+                if (pinchStartDistance > 0) {
+                    const scale = currentDistance / pinchStartDistance;
                     this.style.transform = translate(-50%, -50%) scale(${scale});
                 }
             }
@@ -343,7 +374,7 @@
         document.getElementById("modalImage").addEventListener('touchend', function(e) {
             if (e.touches.length === 0) {
                 isDragging = false;
-                initialDistance = null;
+                pinchStartDistance = 0;
             } else if (e.touches.length === 1) {
                 if (!isZoomed) {
                     const touchEndX = e.changedTouches[0].clientX;
@@ -353,18 +384,21 @@
             }
         });
         
-        // Keyboard controls
-        document.onkeydown = function(e) {
-            e = e || window.event;
-            if (e.keyCode == 27) { // ESC
+        function getDistance(x1, y1, x2, y2) {
+            return Math.hypot(x2 - x1, y2 - y1);
+        }
+        
+        // Управление с клавиатуры
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
                 document.getElementById("myModal").style.display = "none";
                 document.body.style.overflow = "auto";
             }
             if (!isZoomed) {
-                if (e.keyCode == 37) plusSlides(-1); // Left arrow
-                if (e.keyCode == 39) plusSlides(1);  // Right arrow
+                if (e.key === 'ArrowLeft') plusSlides(-1);
+                if (e.key === 'ArrowRight') plusSlides(1);
             }
-        };
+        });
     </script>
 </body>
 </html>
