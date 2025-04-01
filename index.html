@@ -10,7 +10,6 @@
             --secondary-color: #777;
             --accent-color: #8B4513;
             --bg-color: #f5f5f0;
-            --paper-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="400" height="400" fill="%23f5f5f0"/><path d="M0 0h400v400H0z" fill="none" stroke="%23ddd" stroke-width="2" stroke-dasharray="5,5"/></svg>');
         }
 
         * {
@@ -22,7 +21,6 @@
         body {
             font-family: 'Georgia', serif;
             background-color: var(--bg-color);
-            background-image: var(--paper-texture);
             color: var(--primary-color);
             line-height: 1.6;
             padding: 0;
@@ -33,7 +31,7 @@
         }
 
         header {
-            background-color: rgba(245, 245, 240, 0.9);
+            background-color: rgba(245, 245, 240, 0.95);
             padding: 1.5rem 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
@@ -57,23 +55,17 @@
             margin-bottom: 0.5rem;
         }
 
-        .subtitle {
-            font-size: 1rem;
-            color: var(--secondary-color);
-            font-style: italic;
-        }
-
         .categories {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             margin-top: 1.5rem;
-            padding: 0 20px;
+            padding: 0 10px;
         }
 
         .category-btn {
-            padding: 0.7rem 1.5rem;
+            padding: 0.6rem 1.2rem;
             background: transparent;
             border: 1px solid var(--accent-color);
             color: var(--accent-color);
@@ -143,10 +135,11 @@
         .menu-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             padding-bottom: 0.8rem;
             border-bottom: 1px dashed #ddd;
             transition: transform 0.3s ease;
+            gap: 10px;
         }
 
         .menu-item:hover {
@@ -154,16 +147,16 @@
         }
 
         .menu-item-name {
-            flex: 2;
+            flex: 3;
             font-weight: normal;
         }
 
         .menu-item-weight {
             flex: 1;
             text-align: right;
-            padding-right: 1rem;
             color: var(--secondary-color);
             font-size: 0.9rem;
+            min-width: 60px;
         }
 
         .menu-item-price {
@@ -171,11 +164,12 @@
             text-align: right;
             font-weight: bold;
             color: var(--accent-color);
+            min-width: 60px;
         }
 
         footer {
-            background-color: rgba(245, 245, 240, 0.9);
-            padding: 2rem 0;
+            background-color: rgba(245, 245, 240, 0.95);
+            padding: 1.5rem 0;
             text-align: center;
             border-top: 1px solid #ddd;
             margin-top: 2rem;
@@ -188,7 +182,7 @@
         }
 
         .footer-info {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: var(--secondary-color);
         }
 
@@ -204,7 +198,7 @@
 
         @media (max-width: 768px) {
             .categories {
-                gap: 8px;
+                gap: 6px;
             }
             
             .category-btn {
@@ -219,6 +213,20 @@
             .section-title {
                 font-size: 1.5rem;
             }
+
+            .menu-item {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .menu-item-name {
+                flex: 100%;
+            }
+
+            .menu-item-weight, .menu-item-price {
+                text-align: left;
+                flex: auto;
+            }
         }
     </style>
 </head>
@@ -226,7 +234,6 @@
     <header>
         <div class="header-content">
             <h1>BETON</h1>
-            <p class="subtitle">Ресторан & Бар</p>
             
             <div class="categories">
                 <button class="category-btn active" data-category="starters">Холодные закуски</button>
@@ -238,6 +245,7 @@
                 <button class="category-btn" data-category="alcohol">Крепкий алкоголь</button>
                 <button class="category-btn" data-category="wine">Вино</button>
                 <button class="category-btn" data-category="cocktails">Коктейли</button>
+                <button class="category-btn" data-category="bar">Барная карта</button>
             </div>
         </div>
     </header>
@@ -519,87 +527,87 @@
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Брусника</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Бузина</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Вишня</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Вишня-Миндаль</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Дикая роза</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Ежевика</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Жимолость</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Кизил</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Клубника-Базилик</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Клубника-Мята</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Клюква</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Клюква-Розмарин</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Малина-Имбирь</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Облепиха</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Пьяная ягода</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Ревень</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Сморода красная</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Сморода чёрная</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Цукаты</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Черника</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Чернослив</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                 </div>
                 <div class="menu-column">
@@ -610,91 +618,91 @@
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Ананас</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Апельсин</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Банан</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Грейпфрут</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Груша</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Груша-Банан</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Гуава</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Дыня</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Инжир</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Киви</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Кокос</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Лайм</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Лимонелло</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Личи</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Манго</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Мандарин</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Маракуйа</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Персик</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Ранет</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Тропико</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Финики</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Яблоко</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">250</div>
                     </div>
                 </div>
             </div>
@@ -839,11 +847,11 @@
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Херес Массандра белое</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">300</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Чёрный полковник</div>
-                        <div class="menu-item-price"></div>
+                        <div class="menu-item-price">300</div>
                     </div>
                     <div class="menu-item">
                         <div class="menu-item-name">Корке Fine Tawny Porto</div>
@@ -953,6 +961,111 @@
                     </div>
                     <div class="menu-item" style="font-style: italic;">
                         <div class="menu-item-name">Оцените наши коктейли</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Барная карта -->
+        <section id="bar" class="menu-section">
+            <h2 class="section-title">Барная карта</h2>
+            <div class="menu-columns">
+                <div class="menu-column">
+                    <h3 class="menu-subtitle">ПАСТОЙКИ 50 мл</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Анисовка</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Байкал</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Бехеровка</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Волжский Егерь</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Граф Разумовский</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Ерофеевич</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Зубровка</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Крапивница</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Мелисса</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Можжевельник</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Подорожник</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Селигер</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Самбука</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Чёрная самбука</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                </div>
+                <div class="menu-column">
+                    <h3 class="menu-subtitle">МАЦЕРАТЫ 50 мл</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Бородинский хлеб</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Борщ</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Гороховый суп</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Греча</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Грибной суп</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Рассельник</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Свекольник</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Харчо</div>
+                        <div class="menu-item-price"></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-name">Щи</div>
                         <div class="menu-item-price"></div>
                     </div>
                 </div>
