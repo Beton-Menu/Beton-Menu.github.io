@@ -13,51 +13,55 @@
             color: #333;
             line-height: 1.6;
             background: #f5f0e6; /* Крафтовый бумажный фон */
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L100 0 L100 100 L0 100 Z" fill="none" stroke="%23d9d1c0" stroke-width="0.5" stroke-dasharray="2 2"/></svg>');
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0;
         }
         
         /* Галерея */
         .gallery {
-            margin: 40px 0;
-        }
-        
-        .gallery-title {
-            text-align: center;
-            font-weight: 400;
-            color: #444;
-            margin-bottom: 30px;
+            margin: 0;
+            padding: 20px 0;
         }
         
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Увеличил минимальную ширину */
-            gap: 25px; /* Больше отступ между изображениями */
-            padding: 0 15px; /* Отступы по краям */
+            grid-template-columns: 1fr; /* Одна колонка на всю ширину */
+            gap: 20px;
+            padding: 0 10px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            width: 100%;
+            background: #f5f0e6; /* Крафтовый фон для изображения */
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L100 0 L100 100 L0 100 Z" fill="none" stroke="%23d9d1c0" stroke-width="0.5" stroke-dasharray="2 2"/></svg>');
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-radius: 2px;
         }
         
         .gallery img {
             width: 100%;
-            height: 280px; /* Увеличил высоту */
-            object-fit: contain; /* Показываем все изображение без обрезки */
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-            background: #fff; /* Белый фон для изображений */
-            padding: 10px; /* Отступ внутри рамки */
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
             cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
         .gallery img:hover, .gallery img:active {
-            transform: scale(1.05); /* Увеличение при наведении/нажатии */
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transform: scale(1.02);
         }
         
-        /* Модальное окно для полноэкранного просмотра */
+        /* Модальное окно */
         .modal {
             display: none;
             position: fixed;
@@ -67,46 +71,67 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.9);
-            text-align: center;
+            overflow: hidden;
+            touch-action: none;
         }
         
         .modal-content {
-            max-width: 90%;
-            max-height: 90%;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            background: #f5f0e6;
+            padding: 15px;
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L100 0 L100 100 L0 100 Z" fill="none" stroke="%23d9d1c0" stroke-width="0.5" stroke-dasharray="2 2"/></svg>');
         }
         
         .close {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 30px;
             color: white;
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 20px;
+            user-select: none;
+        }
+        
+        .prev {
+            left: 10px;
+        }
+        
+        .next {
+            right: 10px;
         }
         
         /* Футер */
         footer {
-            background: rgba(245, 240, 230, 0.8); /* Полупрозрачный бумажный фон */
-            padding: 40px 0;
-            margin-top: 60px;
+            background: rgba(245, 240, 230, 0.9);
+            padding: 30px 0;
             border-top: 1px solid #d9d1c0;
+            margin-top: 20px;
         }
         
         .footer-content {
             max-width: 600px;
             margin: 0 auto;
             text-align: center;
-        }
-        
-        .restaurant-name {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: #222;
+            padding: 0 20px;
         }
         
         .contact-info {
@@ -117,7 +142,7 @@
         .copyright {
             color: #777;
             font-size: 0.9rem;
-            margin-top: 20px;
+            margin-top: 15px;
         }
     </style>
 </head>
@@ -126,29 +151,40 @@
         <!-- Галерея из 5 изображений -->
         <section class="gallery">
             <div class="gallery-grid">
-                <img src="Page-1.jpg" onclick="openModal(this)">
-                <img src="Page-2.jpg" onclick="openModal(this)">
-                <img src="Page-3.jpg" onclick="openModal(this)">
-                <img src="Page-4.jpg" onclick="openModal(this)">
-                <img src="Page-5.jpg" onclick="openModal(this)">
+                <div class="gallery-item">
+                    <img src="Page-1.jpg" onclick="openModal(0)">
+                </div>
+                <div class="gallery-item">
+                    <img src="Page-2.jpg" onclick="openModal(1)">
+                </div>
+                <div class="gallery-item">
+                    <img src="Page-3.jpg" onclick="openModal(2)">
+                </div>
+                <div class="gallery-item">
+                    <img src="Page-4.jpg" onclick="openModal(3)">
+                </div>
+                <div class="gallery-item">
+                    <img src="Page-5.jpg" onclick="openModal(4)">
+                </div>
             </div>
         </section>
     </main>
     
     <!-- Модальное окно -->
-    <div id="myModal" class="modal" onclick="closeModal()">
+    <div id="myModal" class="modal" onclick="closeModal(event)">
         <span class="close" onclick="event.stopPropagation(); closeModal()">&times;</span>
+        <span class="nav-arrow prev" onclick="event.stopPropagation(); plusSlides(-1)">&#10094;</span>
+        <span class="nav-arrow next" onclick="event.stopPropagation(); plusSlides(1)">&#10095;</span>
         <img class="modal-content" id="modalImage">
     </div>
     
     <!-- Футер -->
     <footer>
         <div class="footer-content">
-             <div class="contact-info">
+            <div class="contact-info">
                 <div>ул.Новоторжская, 12Б, С1</div>
                 <div><a href="tel:‪+74822453969‬" style="color: #444; text-decoration: none;">‪+7 (482) 245-39-69‬</a></div>
             </div>
-            
             <div class="copyright">
                 © 2024 BETON
             </div>
@@ -156,26 +192,66 @@
     </footer>
 
     <script>
-        // Функция для открытия модального окна
-        function openModal(img) {
+        let slideIndex = 0;
+        const images = ["Page-1.jpg", "Page-2.jpg", "Page-3.jpg", "Page-4.jpg", "Page-5.jpg"];
+        
+        function openModal(index) {
+            slideIndex = index;
             const modal = document.getElementById("myModal");
             const modalImg = document.getElementById("modalImage");
             modal.style.display = "block";
-            modalImg.src = img.src;
+            modalImg.src = images[slideIndex];
+            document.body.style.overflow = "hidden"; // Блокируем скролл страницы
         }
         
-        // Функция для закрытия модального окна
-        function closeModal() {
-            document.getElementById("myModal").style.display = "none";
+        function closeModal(e) {
+            // Закрываем только при клике на фон (не на изображение)
+            if (e.target.classList.contains('modal')) {
+                document.getElementById("myModal").style.display = "none";
+                document.body.style.overflow = "auto"; // Восстанавливаем скролл
+            }
         }
         
-        // Закрытие при нажатии ESC
+        function plusSlides(n) {
+            slideIndex += n;
+            if (slideIndex >= images.length) { slideIndex = 0; }
+            if (slideIndex < 0) { slideIndex = images.length - 1; }
+            document.getElementById("modalImage").src = images[slideIndex];
+        }
+        
+        // Закрытие по ESC
         document.onkeydown = function(evt) {
             evt = evt || window.event;
             if (evt.keyCode == 27) {
-                closeModal();
+                document.getElementById("myModal").style.display = "none";
+                document.body.style.overflow = "auto";
             }
+            // Навигация стрелками
+            if (evt.keyCode == 37) { plusSlides(-1); } // Стрелка влево
+            if (evt.keyCode == 39) { plusSlides(1); } // Стрелка вправо
         };
+        
+        // Свайпы для мобильных устройств
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.querySelector('.modal').addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+        
+        document.querySelector('.modal').addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                plusSlides(1); // Свайп влево - следующее
+            }
+            if (touchEndX > touchStartX + 50) {
+                plusSlides(-1); // Свайп вправо - предыдущее
+            }
+        }
     </script>
 </body>
 </html>
