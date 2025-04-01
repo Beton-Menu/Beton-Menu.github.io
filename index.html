@@ -13,7 +13,6 @@
             color: #333;
             line-height: 1.6;
             background: #f5f0e6; /* Крафтовый бумажный фон */
-            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L100 0 L100 100 L0 100 Z" fill="none" stroke="%23d9d1c0" stroke-width="0.5" stroke-dasharray="2 2"/></svg>');
         }
         
         .container {
@@ -30,7 +29,7 @@
         
         .gallery-grid {
             display: grid;
-            grid-template-columns: 1fr; /* Одна колонка на всю ширину */
+            grid-template-columns: 1fr;
             gap: 20px;
             padding: 0 10px;
         }
@@ -38,8 +37,7 @@
         .gallery-item {
             position: relative;
             width: 100%;
-            background: #f5f0e6; /* Крафтовый фон для изображения */
-            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L100 0 L100 100 L0 100 Z" fill="none" stroke="%23d9d1c0" stroke-width="0.5" stroke-dasharray="2 2"/></svg>');
+            background: #f5f0e6;
             padding: 15px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             border-radius: 2px;
@@ -85,7 +83,6 @@
             object-fit: contain;
             background: #f5f0e6;
             padding: 15px;
-            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L100 0 L100 100 L0 100 Z" fill="none" stroke="%23d9d1c0" stroke-width="0.5" stroke-dasharray="2 2"/></svg>');
         }
         
         .close {
@@ -97,6 +94,12 @@
             font-weight: bold;
             cursor: pointer;
             z-index: 1001;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        
+        .close:hover {
+            opacity: 1;
         }
         
         .nav-arrow {
@@ -109,6 +112,20 @@
             z-index: 1001;
             padding: 20px;
             user-select: none;
+            opacity: 0.3;
+            transition: opacity 0.3s;
+            background: rgba(0,0,0,0.2);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-arrow:hover {
+            opacity: 0.8;
+            background: rgba(0,0,0,0.4);
         }
         
         .prev {
@@ -201,14 +218,13 @@
             const modalImg = document.getElementById("modalImage");
             modal.style.display = "block";
             modalImg.src = images[slideIndex];
-            document.body.style.overflow = "hidden"; // Блокируем скролл страницы
+            document.body.style.overflow = "hidden";
         }
         
         function closeModal(e) {
-            // Закрываем только при клике на фон (не на изображение)
             if (e.target.classList.contains('modal')) {
                 document.getElementById("myModal").style.display = "none";
-                document.body.style.overflow = "auto"; // Восстанавливаем скролл
+                document.body.style.overflow = "auto";
             }
         }
         
@@ -219,19 +235,16 @@
             document.getElementById("modalImage").src = images[slideIndex];
         }
         
-        // Закрытие по ESC
         document.onkeydown = function(evt) {
             evt = evt || window.event;
             if (evt.keyCode == 27) {
                 document.getElementById("myModal").style.display = "none";
                 document.body.style.overflow = "auto";
             }
-            // Навигация стрелками
-            if (evt.keyCode == 37) { plusSlides(-1); } // Стрелка влево
-            if (evt.keyCode == 39) { plusSlides(1); } // Стрелка вправо
+            if (evt.keyCode == 37) { plusSlides(-1); }
+            if (evt.keyCode == 39) { plusSlides(1); }
         };
         
-        // Свайпы для мобильных устройств
         let touchStartX = 0;
         let touchEndX = 0;
         
@@ -246,10 +259,10 @@
         
         function handleSwipe() {
             if (touchEndX < touchStartX - 50) {
-                plusSlides(1); // Свайп влево - следующее
+                plusSlides(1);
             }
             if (touchEndX > touchStartX + 50) {
-                plusSlides(-1); // Свайп вправо - предыдущее
+                plusSlides(-1);
             }
         }
     </script>
