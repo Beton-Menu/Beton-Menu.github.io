@@ -12,7 +12,7 @@
             padding: 0;
             color: #333;
             line-height: 1.6;
-            background: #f5f0e6; /* Крафтовый бумажный фон */
+            background: #f5f0e6;
         }
         
         .container {
@@ -51,11 +51,11 @@
             display: block;
             margin: 0 auto;
             transition: transform 0.3s ease;
-            cursor: pointer;
+            cursor: zoom-in;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        .gallery img:hover, .gallery img:active {
+        .gallery img:hover {
             transform: scale(1.02);
         }
         
@@ -83,6 +83,13 @@
             object-fit: contain;
             background: #f5f0e6;
             padding: 15px;
+            transition: transform 0.3s ease;
+            cursor: zoom-out;
+        }
+        
+        .modal-content.zoomed {
+            transform: translate(-50%, -50%) scale(1.5);
+            cursor: grab;
         }
         
         .close {
@@ -112,20 +119,16 @@
             z-index: 1001;
             padding: 20px;
             user-select: none;
-            opacity: 0.3;
+            opacity: 0;
             transition: opacity 0.3s;
-            background: rgba(0,0,0,0.2);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        }
+        
+        .modal:hover .nav-arrow {
+            opacity: 0.7;
         }
         
         .nav-arrow:hover {
-            opacity: 0.8;
-            background: rgba(0,0,0,0.4);
+            opacity: 1 !important;
         }
         
         .prev {
@@ -192,7 +195,7 @@
         <span class="close" onclick="event.stopPropagation(); closeModal()">&times;</span>
         <span class="nav-arrow prev" onclick="event.stopPropagation(); plusSlides(-1)">&#10094;</span>
         <span class="nav-arrow next" onclick="event.stopPropagation(); plusSlides(1)">&#10095;</span>
-        <img class="modal-content" id="modalImage">
+        <img class="modal-content" id="modalImage" onclick="zoomImage(event)">
     </div>
     
     <!-- Футер -->
@@ -211,6 +214,7 @@
     <script>
         let slideIndex = 0;
         const images = ["Page-1.jpg", "Page-2.jpg", "Page-3.jpg", "Page-4.jpg", "Page-5.jpg"];
+        let isZoomed = false;
         
         function openModal(index) {
             slideIndex = index;
@@ -218,43 +222,103 @@
             const modalImg = document.getElementById("modalImage");
             modal.style.display = "block";
             modalImg.src = images[slideIndex];
+            modalImg.classList.remove("zoomed");
+            isZoomed = false;
             document.body.style.overflow = "hidden";
         }
         
         function closeModal(e) {
-            if (e.target.classList.contains('modal')) {
+            if (e.target.classList.contains('modal') || e.target.classList.contains('close')) {
                 document.getElementById("myModal").style.display = "none";
                 document.body.style.overflow = "auto";
             }
         }
         
         function plusSlides(n) {
+            if (isZoomed) return;
+            
             slideIndex += n;
             if (slideIndex >= images.length) { slideIndex = 0; }
             if (slideIndex < 0) { slideIndex = images.length - 1; }
             document.getElementById("modalImage").src = images[slideIndex];
+            document.getElementById("modalImage").classList.remove("zoomed");
+            isZoomed = false;
         }
         
+        function zoomImage(e) {
+            e.stopPropagation();
+            const modalImg = document.getElementById("modalImage");
+            
+            if (isZoomed) {
+                modalImg.classList.remove("zoomed");
+                isZoomed = false;
+                modalImg.style.cursor = "zoom-out";
+            } else {
+                modalImg.classList.add("zoomed");
+                isZoomed = true;
+                modalImg.style.cursor = "grab";
+            }
+        }
+        
+        // Перемещение увеличенного изображения
+        let posX = 0, posY = 0;
+        let isDragging = false;
+        let startX, startY;
+        
+        document.getElementById("modalImage").addEventListener('mousedown', function(e) {
+            if (isZoomed) {
+                isDragging = true;
+                startX = e.clientX - posX;
+                startY = e.clientY - posY;
+                this.style.cursor = 'grabbing';
+            }
+        });
+        
+        document.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+            
+            posX = e.clientX - startX;
+            posY = e.clientY - startY;
+            
+            const modalImg = document.getElementById("modalImage");
+            modalImg.style.transform = translate(-50%, -50%) scale(1.5) translate(${posX/1.5}px, ${posY/1.5}px);
+        });
+        
+        document.addEventListener('mouseup', function() {
+            isDragging = false;
+            if (isZoomed) {
+                document.getElementById("modalImage").style.cursor = 'grab';
+            }
+        });
+        
+        // Управление с клавиатуры
         document.onkeydown = function(evt) {
             evt = evt || window.event;
-            if (evt.keyCode == 27) {
+            if (evt.keyCode == 27) { // ESC
                 document.getElementById("myModal").style.display = "none";
                 document.body.style.overflow = "auto";
             }
-            if (evt.keyCode == 37) { plusSlides(-1); }
-            if (evt.keyCode == 39) { plusSlides(1); }
+            if (!isZoomed) {
+                if (evt.keyCode == 37) { plusSlides(-1); } // Стрелка влево
+                if (evt.keyCode == 39) { plusSlides(1); } // Стрелка вправо
+            }
         };
         
+        // Свайпы для мобильных устройств
         let touchStartX = 0;
         let touchEndX = 0;
         
         document.querySelector('.modal').addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
+            if (!isZoomed) {
+                touchStartX = e.changedTouches[0].screenX;
+            }
         }, false);
         
         document.querySelector('.modal').addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
+            if (!isZoomed) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }
         }, false);
         
         function handleSwipe() {
@@ -265,6 +329,38 @@
                 plusSlides(-1);
             }
         }
+        
+        // Зум для мобильных устройств
+        let initialDistance = null;
+        
+        document.getElementById("modalImage").addEventListener('touchstart', function(e) {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                initialDistance = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+            }
+        }, { passive: false });
+        
+        document.getElementById("modalImage").addEventListener('touchmove', function(e) {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                const currentDistance = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                
+                if (initialDistance) {
+                    const scale = currentDistance / initialDistance;
+                    this.style.transform = translate(-50%, -50%) scale(${scale});
+                }
+            }
+        }, { passive: false });
+        
+        document.getElementById("modalImage").addEventListener('touchend', function() {
+            initialDistance = null;
+        });
     </script>
 </body>
 </html>
