@@ -3,63 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAR BETON</title>
+    <title>BETON MENU</title>
     <style>
-        /* Базовые стили с грубым крафтовым фоном */
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            color: #333;
-            line-height: 1.6;
-            background-color: #f0e5d0;
-            background-image: 
-                linear-gradient(rgba(210, 190, 160, 0.2) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(210, 190, 160, 0.2) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-        
-        .container {
-            max-width: 100%;
-            margin: 0 auto;
             padding: 20px;
+            background-color: #f5f0e6;
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path opacity="0.05" d="M0 0 L100 0 L100 100 L0 100 Z" fill="%237a6b5f"/></svg>');
         }
         
-        /* Галерея */
         .gallery {
-            margin: 30px 0;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-        
-        .gallery-item {
-            background: #f8f1e3;
-            padding: 20px;
-            border-radius: 3px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            border: 1px solid #e0d4c0;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
         
         .gallery img {
             width: 100%;
+            max-width: 600px;
             height: auto;
-            max-height: 70vh;
-            object-fit: contain;
-            display: block;
-            margin: 0 auto;
+            margin: 10px 0;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
         }
         
         .gallery img:hover {
-            transform: scale(1.02);
+            transform: scale(1.01);
         }
         
-        /* Модальное окно */
         .modal {
             display: none;
             position: fixed;
@@ -67,175 +40,112 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            overflow: auto;
-        }
-        
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            background: #f8f1e3;
-            padding: 15px;
-            cursor: zoom-out;
-        }
-        
-        .close {
-            position: fixed;
-            top: 25px;
-            right: 35px;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        
-        .nav-arrow {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-            z-index: 1001;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .modal:hover .nav-arrow {
-            opacity: 0.7;
-        }
-        
-        .prev {
-            left: 20px;
-        }
-        
-        .next {
-            right: 20px;
-        }
-        
-        /* Футер */
-        footer {
-            background: rgba(240, 229, 208, 0.9);
-            padding: 30px 0;
-            border-top: 1px solid #d9d1c0;
-            margin-top: 50px;
+            background: rgba(0,0,0,0.9);
+            z-index: 100;
             text-align: center;
         }
         
-        .contact-info {
-            margin-bottom: 15px;
+        .modal-img {
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 5%;
         }
         
-        .copyright {
-            color: #777;
-            font-size: 0.9rem;
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        
+        .arrow {
+            position: fixed;
+            top: 50%;
+            font-size: 50px;
+            color: rgba(255,255,255,0);
+            cursor: pointer;
+            user-select: none;
+            padding: 20px;
+            transform: translateY(-50%);
+            transition: color 0.2s;
+        }
+        
+        .arrow:hover {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .prev {
+            left: 10px;
+        }
+        
+        .next {
+            right: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <main class="container">
-        <section class="gallery">
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="./Page-1.jpg" alt="Меню страница 1" onclick="openModal('./Page-1.jpg')">
-                </div>
-                <div class="gallery-item">
-                    <img src="./Page-2.jpg" alt="Меню страница 2" onclick="openModal('./Page-2.jpg')">
-                </div>
-                <div class="gallery-item">
-                    <img src="./Page-3.jpg" alt="Меню страница 3" onclick="openModal('./Page-3.jpg')">
-                </div>
-                <div class="gallery-item">
-                    <img src="./Page-4.jpg" alt="Меню страница 4" onclick="openModal('./Page-4.jpg')">
-                </div>
-                <div class="gallery-item">
-                    <img src="./Page-5.jpg" alt="Меню страница 5" onclick="openModal('./Page-5.jpg')">
-                </div>
-            </div>
-        </section>
-    </main>
+    <div class="gallery">
+        <img src="Page-1.jpg" onclick="openModal(0)">
+        <img src="Page-2.jpg" onclick="openModal(1)">
+        <img src="Page-3.jpg" onclick="openModal(2)">
+        <img src="Page-4.jpg" onclick="openModal(3)">
+        <img src="Page-5.jpg" onclick="openModal(4)">
+    </div>
     
     <div id="modal" class="modal" onclick="closeModal()">
         <span class="close" onclick="event.stopPropagation(); closeModal()">&times;</span>
-        <span class="nav-arrow prev" onclick="event.stopPropagation(); prevImage()">&#10094;</span>
-        <span class="nav-arrow next" onclick="event.stopPropagation(); nextImage()">&#10095;</span>
-        <img class="modal-content" id="modalImg" onclick="event.stopPropagation()">
+        <span class="arrow prev" onclick="event.stopPropagation(); prevImg()">&#10094;</span>
+        <span class="arrow next" onclick="event.stopPropagation(); nextImg()">&#10095;</span>
+        <img class="modal-img" id="modalImg">
     </div>
     
     <footer>
-        <div class="contact-info">
-            <div>ул.Новоторжская, 12Б, С1</div>
-            <div><a href="tel:+74822453969" style="color: #444; text-decoration: none;">+7 (482) 245-39-69</a></div>
-        </div>
-        <div class="copyright">
-            © 2025 BETON
-        </div>
+        <div>ул.Новоторжская, 12Б, С1</div>
+        <div><a href="tel:+74822453969" style="color: #444;">+7 (482) 245-39-69</a></div>
+        <div>© 2025 BETON</div>
     </footer>
 
     <script>
-        // Массив изображений
-        const images = [
-            './Page-1.jpg',
-            './Page-2.jpg',
-            './Page-3.jpg',
-            './Page-4.jpg',
-            './Page-5.jpg'
-        ];
-        
+        const images = ['Page-1.jpg', 'Page-2.jpg', 'Page-3.jpg', 'Page-4.jpg', 'Page-5.jpg'];
         let currentIndex = 0;
-        const modal = document.getElementById('modal');
-        const modalImg = document.getElementById('modalImg');
         
-        // Открытие модального окна
-        function openModal(imgSrc) {
-            currentIndex = images.indexOf(imgSrc);
-            if (currentIndex === -1) currentIndex = 0;
-            
-            modal.style.display = 'block';
-            modalImg.src = imgSrc;
+        function openModal(index) {
+            currentIndex = index;
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('modalImg').src = images[currentIndex];
             document.body.style.overflow = 'hidden';
         }
         
-        // Закрытие модального окна
         function closeModal() {
-            modal.style.display = 'none';
+            document.getElementById('modal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
         
-        // Навигация
-        function prevImage() {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            modalImg.src = images[currentIndex];
-        }
-        
-        function nextImage() {
+        function nextImg() {
             currentIndex = (currentIndex + 1) % images.length;
-            modalImg.src = images[currentIndex];
+            document.getElementById('modalImg').src = images[currentIndex];
         }
         
-        // Закрытие по ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
+        function prevImg() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            document.getElementById('modalImg').src = images[currentIndex];
+        }
         
-        // Проверка наличия изображений
-        window.addEventListener('load', function() {
-            images.forEach(img => {
-                const testImg = new Image();
-                testImg.src = img;
-                testImg.onerror = function() {
-                    console.error('Изображение не найдено:', img);
-                };
-            });
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('modal').style.display === 'block') {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowRight') nextImg();
+                if (e.key === 'ArrowLeft') prevImg();
+            }
         });
     </script>
 </body>
