@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BAR BETON</title>
     <style>
-        /* Базовые стили */
+        /* Базовые стили с грубым крафтовым фоном */
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
@@ -13,48 +13,46 @@
             color: #333;
             line-height: 1.6;
             background-color: #f0e5d0;
-            background-image: url('data:image/svg+xml;utf8,<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.05 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/><rect x="20" y="20" width="560" height="560" fill="none" stroke="%23c0b7a5" stroke-width="2" stroke-dasharray="5,3"/></svg>');
+            background-image: 
+                linear-gradient(rgba(210, 190, 160, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(210, 190, 160, 0.2) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
         
         .container {
             max-width: 100%;
             margin: 0 auto;
-            padding: 0;
+            padding: 20px;
         }
         
         /* Галерея */
         .gallery {
-            margin: 0;
-            padding: 30px 0;
+            margin: 30px 0;
         }
         
         .gallery-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 30px;
-            padding: 0 20px;
         }
         
         .gallery-item {
-            position: relative;
-            width: 100%;
-            background: #f0e5d0;
-            padding: 25px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            background: #f8f1e3;
+            padding: 20px;
             border-radius: 3px;
-            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 1px solid #e0d4c0;
         }
         
         .gallery img {
             width: 100%;
             height: auto;
-            max-height: 80vh;
+            max-height: 70vh;
             object-fit: contain;
             display: block;
             margin: 0 auto;
-            transition: transform 0.3s ease;
             cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
         
         .gallery img:hover {
@@ -65,14 +63,13 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.96);
-            overflow: hidden;
-            touch-action: none;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            overflow: auto;
         }
         
         .modal-content {
@@ -80,19 +77,12 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 95%;
-            max-height: 95%;
+            max-width: 90%;
+            max-height: 90%;
             object-fit: contain;
-            background: #f0e5d0;
-            padding: 20px;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 0 25px rgba(0,0,0,0.4);
-        }
-        
-        .modal-content.zoomed {
-            transform: translate(-50%, -50%) scale(1.8);
-            cursor: grab;
+            background: #f8f1e3;
+            padding: 15px;
+            cursor: zoom-out;
         }
         
         .close {
@@ -100,17 +90,9 @@
             top: 25px;
             right: 35px;
             color: white;
-            font-size: 45px;
-            font-weight: bold;
+            font-size: 40px;
             cursor: pointer;
             z-index: 1001;
-            opacity: 0.8;
-            transition: opacity 0.2s;
-            text-shadow: 0 0 8px rgba(0,0,0,0.7);
-        }
-        
-        .close:hover {
-            opacity: 1;
         }
         
         .nav-arrow {
@@ -118,286 +100,142 @@
             top: 50%;
             transform: translateY(-50%);
             color: white;
-            font-size: 45px;
+            font-size: 40px;
             cursor: pointer;
             z-index: 1001;
-            padding: 50px 25px;
-            user-select: none;
+            padding: 20px;
             opacity: 0;
-            transition: opacity 0.2s;
-            text-shadow: 0 0 8px rgba(0,0,0,0.7);
+            transition: opacity 0.3s;
         }
         
         .modal:hover .nav-arrow {
-            opacity: 0;
-        }
-        
-        .nav-arrow:hover {
-            opacity: 0.8 !important;
+            opacity: 0.7;
         }
         
         .prev {
-            left: 0;
+            left: 20px;
         }
         
         .next {
-            right: 0;
+            right: 20px;
         }
         
         /* Футер */
         footer {
-            background: rgba(240, 229, 208, 0.95);
-            padding: 35px 0;
-            border-top: 1px solid #c0b7a5;
-            margin-top: 40px;
-        }
-        
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
+            background: rgba(240, 229, 208, 0.9);
+            padding: 30px 0;
+            border-top: 1px solid #d9d1c0;
+            margin-top: 50px;
             text-align: center;
-            padding: 0 25px;
         }
         
         .contact-info {
             margin-bottom: 15px;
-            line-height: 1.8;
         }
         
         .copyright {
             color: #777;
             font-size: 0.9rem;
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <main class="container">
-        <!-- Галерея из 5 изображений -->
         <section class="gallery">
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="Page-1.jpg" onclick="openModal(0)">
+                    <img src="./Page-1.jpg" alt="Меню страница 1" onclick="openModal('./Page-1.jpg')">
                 </div>
                 <div class="gallery-item">
-                    <img src="Page-2.jpg" onclick="openModal(1)">
+                    <img src="./Page-2.jpg" alt="Меню страница 2" onclick="openModal('./Page-2.jpg')">
                 </div>
                 <div class="gallery-item">
-                    <img src="Page-3.jpg" onclick="openModal(2)">
+                    <img src="./Page-3.jpg" alt="Меню страница 3" onclick="openModal('./Page-3.jpg')">
                 </div>
                 <div class="gallery-item">
-                    <img src="Page-4.jpg" onclick="openModal(3)">
+                    <img src="./Page-4.jpg" alt="Меню страница 4" onclick="openModal('./Page-4.jpg')">
                 </div>
                 <div class="gallery-item">
-                    <img src="Page-5.jpg" onclick="openModal(4)">
+                    <img src="./Page-5.jpg" alt="Меню страница 5" onclick="openModal('./Page-5.jpg')">
                 </div>
             </div>
         </section>
     </main>
     
-    <!-- Модальное окно -->
-    <div id="myModal" class="modal" onclick="closeModal(event)">
+    <div id="modal" class="modal" onclick="closeModal()">
         <span class="close" onclick="event.stopPropagation(); closeModal()">&times;</span>
-        <span class="nav-arrow prev" onclick="event.stopPropagation(); plusSlides(-1)">&#10094;</span>
-        <span class="nav-arrow next" onclick="event.stopPropagation(); plusSlides(1)">&#10095;</span>
-        <img class="modal-content" id="modalImage" onclick="zoomImage(event)">
+        <span class="nav-arrow prev" onclick="event.stopPropagation(); prevImage()">&#10094;</span>
+        <span class="nav-arrow next" onclick="event.stopPropagation(); nextImage()">&#10095;</span>
+        <img class="modal-content" id="modalImg" onclick="event.stopPropagation()">
     </div>
     
-    <!-- Футер -->
     <footer>
-        <div class="footer-content">
-            <div class="contact-info">
-                <div>ул.Новоторжская, 12Б, С1</div>
-                <div><a href="tel:‪+74822453969‬" style="color: #444; text-decoration: none;">‪+7 (482) 245-39-69‬</a></div>
-            </div>
-            <div class="copyright">
-                © 2025 BETON
-            </div>
+        <div class="contact-info">
+            <div>ул.Новоторжская, 12Б, С1</div>
+            <div><a href="tel:+74822453969" style="color: #444; text-decoration: none;">+7 (482) 245-39-69</a></div>
+        </div>
+        <div class="copyright">
+            © 2025 BETON
         </div>
     </footer>
 
     <script>
         // Массив изображений
         const images = [
-            "Page-1.jpg",
-            "Page-2.jpg",
-            "Page-3.jpg",
-            "Page-4.jpg",
-            "Page-5.jpg"
+            './Page-1.jpg',
+            './Page-2.jpg',
+            './Page-3.jpg',
+            './Page-4.jpg',
+            './Page-5.jpg'
         ];
         
-        let currentSlide = 0;
-        let isZoomed = false;
-        let isDragging = false;
-        let dragStartX = 0, dragStartY = 0, dragOffsetX = 0, dragOffsetY = 0;
+        let currentIndex = 0;
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
         
         // Открытие модального окна
-        function openModal(slideIndex) {
-            currentSlide = slideIndex;
-            const modal = document.getElementById("myModal");
-            const modalImg = document.getElementById("modalImage");
+        function openModal(imgSrc) {
+            currentIndex = images.indexOf(imgSrc);
+            if (currentIndex === -1) currentIndex = 0;
             
-            modal.style.display = "block";
-            modalImg.src = images[currentSlide];
-            modalImg.classList.remove("zoomed");
-            isZoomed = false;
-            dragOffsetX = dragOffsetY = 0;
-            
-            // Блокировка скролла страницы
-            document.body.style.overflow = "hidden";
+            modal.style.display = 'block';
+            modalImg.src = imgSrc;
+            document.body.style.overflow = 'hidden';
         }
         
         // Закрытие модального окна
-        function closeModal(e) {
-            if (e.target.classList.contains('modal') || e.target.classList.contains('close')) {
-                document.getElementById("myModal").style.display = "none";
-                document.body.style.overflow = "auto";
-            }
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
         
-        // Переключение слайдов
-        function plusSlides(n) {
-            if (isZoomed) return;
-            
-            currentSlide += n;
-            
-            // Циклическая навигация
-            if (currentSlide >= images.length) {
-                currentSlide = 0;
-            } else if (currentSlide < 0) {
-                currentSlide = images.length - 1;
-            }
-            
-            const modalImg = document.getElementById("modalImage");
-            modalImg.src = images[currentSlide];
-            modalImg.classList.remove("zoomed");
-            isZoomed = false;
-            dragOffsetX = dragOffsetY = 0;
+        // Навигация
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            modalImg.src = images[currentIndex];
         }
         
-        // Увеличение/уменьшение изображения
-        function zoomImage(e) {
-            e.stopPropagation();
-            const modalImg = document.getElementById("modalImage");
-            
-            if (isZoomed) {
-                // Возврат к нормальному размеру
-                modalImg.classList.remove("zoomed");
-                isZoomed = false;
-                modalImg.style.cursor = "pointer";
-                dragOffsetX = dragOffsetY = 0;
-                modalImg.style.transform = "translate(-50%, -50%)";
-            } else {
-                // Увеличение изображения
-                modalImg.classList.add("zoomed");
-                isZoomed = true;
-                modalImg.style.cursor = "grab";
-            }
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            modalImg.src = images[currentIndex];
         }
         
-        // Обработчики для перетаскивания изображения
-        document.getElementById("modalImage").addEventListener('mousedown', function(e) {
-            if (isZoomed) {
-                isDragging = true;
-                dragStartX = e.clientX - dragOffsetX;
-                dragStartY = e.clientY - dragOffsetY;
-                this.style.cursor = 'grabbing';
-                e.preventDefault();
-            }
-        });
-        
-        document.addEventListener('mousemove', function(e) {
-            if (!isDragging || !isZoomed) return;
-            
-            dragOffsetX = e.clientX - dragStartX;
-            dragOffsetY = e.clientY - dragStartY;
-            
-            const modalImg = document.getElementById("modalImage");
-            modalImg.style.transform = `
-                translate(-50%, -50%) 
-                scale(1.8) 
-                translate(${dragOffsetX/1.8}px, ${dragOffsetY/1.8}px)
-            `;
-        });
-        
-        document.addEventListener('mouseup', function() {
-            isDragging = false;
-            if (isZoomed) {
-                document.getElementById("modalImage").style.cursor = 'grab';
-            }
-        });
-        
-        // Обработчики для мобильных устройств
-        let touchStartX = 0;
-        let pinchStartDistance = 0;
-        
-        document.getElementById("modalImage").addEventListener('touchstart', function(e) {
-            if (e.touches.length === 1) {
-                touchStartX = e.touches[0].clientX;
-                if (isZoomed) {
-                    isDragging = true;
-                    dragStartX = e.touches[0].clientX - dragOffsetX;
-                    dragStartY = e.touches[0].clientY - dragOffsetY;
-                }
-            } else if (e.touches.length === 2) {
-                pinchStartDistance = getDistance(
-                    e.touches[0].clientX, e.touches[0].clientY,
-                    e.touches[1].clientX, e.touches[1].clientY
-                );
-            }
-        }, { passive: false });
-        
-        document.getElementById("modalImage").addEventListener('touchmove', function(e) {
-            if (e.touches.length === 1 && isZoomed) {
-                e.preventDefault();
-                dragOffsetX = e.touches[0].clientX - dragStartX;
-                dragOffsetY = e.touches[0].clientY - dragStartY;
-                this.style.transform = `
-                    translate(-50%, -50%) 
-                    scale(1.8) 
-                    translate(${dragOffsetX/1.8}px, ${dragOffsetY/1.8}px)
-                `;
-            } else if (e.touches.length === 2) {
-                e.preventDefault();
-                const currentDistance = getDistance(
-                    e.touches[0].clientX, e.touches[0].clientY,
-                    e.touches[1].clientX, e.touches[1].clientY
-                );
-                
-                if (pinchStartDistance > 0) {
-                    const scale = currentDistance / pinchStartDistance;
-                    this.style.transform = translate(-50%, -50%) scale(${scale});
-                }
-            }
-        }, { passive: false });
-        
-        document.getElementById("modalImage").addEventListener('touchend', function(e) {
-            if (e.touches.length === 0) {
-                isDragging = false;
-                pinchStartDistance = 0;
-            } else if (e.touches.length === 1) {
-                if (!isZoomed) {
-                    const touchEndX = e.changedTouches[0].clientX;
-                    if (touchEndX < touchStartX - 50) plusSlides(1);
-                    if (touchEndX > touchStartX + 50) plusSlides(-1);
-                }
-            }
-        });
-        
-        function getDistance(x1, y1, x2, y2) {
-            return Math.hypot(x2 - x1, y2 - y1);
-        }
-        
-        // Управление с клавиатуры
+        // Закрытие по ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                document.getElementById("myModal").style.display = "none";
-                document.body.style.overflow = "auto";
+                closeModal();
             }
-            if (!isZoomed) {
-                if (e.key === 'ArrowLeft') plusSlides(-1);
-                if (e.key === 'ArrowRight') plusSlides(1);
-            }
+        });
+        
+        // Проверка наличия изображений
+        window.addEventListener('load', function() {
+            images.forEach(img => {
+                const testImg = new Image();
+                testImg.src = img;
+                testImg.onerror = function() {
+                    console.error('Изображение не найдено:', img);
+                };
+            });
         });
     </script>
 </body>
