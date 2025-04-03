@@ -227,11 +227,11 @@
             
             <div class="subcategories" id="alcohol-subcategories">
                 <button class="subcategory-btn" data-subcategory="tinctures">Настойки</button>
+                <button class="subcategory-btn" data-subcategory="infusions">Наливки</button>
                 <button class="subcategory-btn" data-subcategory="maceration">Мацераты</button>
                 <button class="subcategory-btn" data-subcategory="special">Особые</button>
                 <button class="subcategory-btn" data-subcategory="cocktails">Коктейли</button>
                 <button class="subcategory-btn" data-subcategory="shots">Шоты</button>
-                <button class="subcategory-btn" data-subcategory="infusions">Наливки</button>
                 <button class="subcategory-btn" data-subcategory="strong-alcohol">Крепкий алкоголь</button>
                 <button class="subcategory-btn" data-subcategory="wine">Вино</button>
                 <button class="subcategory-btn" data-subcategory="beer">Пиво</button>
@@ -324,7 +324,7 @@
         <!-- Алкоголь -->
         <section id="tinctures" class="menu-section">
             <h2 class="section-title">Настойки</h2>
-            <div class="group-price">Все настойки: 200₽ (50мл), кроме крепких - 200₽ (25мл)</div>
+            <div class="group-price">Настойки: 200₽ (50мл)<br>Крепкие - 200₽ (25мл)</div>
             
             <div class="menu-group">
                 <h3 class="group-title">Травяные</h3>
@@ -392,7 +392,7 @@
 
         <section id="maceration" class="menu-section">
             <h2 class="section-title">Мацераты</h2>
-            <div class="group-price">Все мацераты: 250₽ (50мл)</div>
+            <div class="group-price">Мацераты: 250₽ (50мл)</div>
             
             <div class="menu-group">
                 <item><name>Апельсин</name></item>
@@ -419,7 +419,7 @@
 
         <section id="special" class="menu-section">
             <h2 class="section-title">Особые</h2>
-            <div class="group-price">Все позиции: 400₽</div>
+            <div class="group-price">Особые: 400₽</div>
             
             <div class="menu-group">
                 <item><name>Апельсиновый ликёр</name></item>
@@ -479,7 +479,7 @@
 
         <section id="infusions" class="menu-section">
             <h2 class="section-title">Наливки</h2>
-            <div class="group-price">Все наливки: 250₽ (50мл)</div>
+            <div class="group-price">Наливки: 250₽ (50мл)</div>
             
             <div class="menu-group">
                 <h3 class="group-title">Ягодные</h3>
@@ -740,7 +740,7 @@
             <div class="menu-group">
                 <h3 class="group-title">Разливное</h3>
                 <item><name>Жигули Бариос Светлое</name><price>200/290</price></item>
-                <item><name>Пеправильный мёд</name><price>230/350</price></item>
+                <item><name>Неправильный мёд</name><price>230/350</price></item>
             </div>
             
             <div class="menu-group">
@@ -804,7 +804,7 @@
 
     <script>
         // Управление шапкой
-        let lastScroll = 0;
+       /*/let lastScroll = 0;
         const header = document.getElementById('main-header');
         const headerHeight = header.offsetHeight;
 
@@ -820,7 +820,7 @@
             }
             
             lastScroll = currentScroll;
-        });
+        });/*/
 
         // Переключение категорий
         document.querySelectorAll('.main-category-btn').forEach(btn => {
