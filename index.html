@@ -819,46 +819,47 @@
             lastScroll = currentScroll;
         });/*/
 
-       // 2. Переключение категорий (с автовыбором первой подкатегории)
-document.querySelectorAll('.main-category-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        // Сброс активных элементов
-        document.querySelectorAll('.main-category-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.subcategories').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
-        
-        // Активация выбранной категории
-        this.classList.add('active');
-        const category = this.dataset.category;
-        document.getElementById(${category}-subcategories).classList.add('active');
-        
-        // Автоматический выбор первой подкатегории
-        const firstSubBtn = document.querySelector(#${category}-subcategories .subcategory-btn);
-        if (firstSubBtn) firstSubBtn.click(); // Важно: это вызывает скролл
-    });
-});
-
-// 3. Переключение подкатегорий (со скроллом)
-document.querySelectorAll('.subcategory-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        // Сброс активных элементов
-        document.querySelectorAll('.subcategory-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
-        
-        // Активация выбранной подкатегории
-        this.classList.add('active');
-        const subcategory = this.dataset.subcategory;
-        document.getElementById(subcategory).classList.add('active');
-        
-        // Плавный скролл к секции
-        setTimeout(() => {
-            document.getElementById(subcategory).scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+       // Переключение категорий
+        document.querySelectorAll('.main-category-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelectorAll('.main-category-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.subcategories').forEach(s => s.classList.remove('active'));
+                document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+                
+                this.classList.add('active');
+                const category = this.dataset.category;
+                document.getElementById(`${category}-subcategories`).classList.add('active');
+                
+               /* const firstSubBtn = document.querySelector(`#${category}-subcategories .subcategory-btn`);
+                if (firstSubBtn) firstSubBtn.click();
+                */
+                // Показываем шапку при переключении
+                header.classList.remove('hidden');
             });
-        }, 100);
-    });
-});
+        });
+
+        // Переключение подкатегорий
+        document.querySelectorAll('.subcategory-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.subcategory-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+                
+                this.classList.add('active');
+                const subcategory = this.dataset.subcategory;
+                document.getElementById(subcategory).classList.add('active');
+                
+                // Плавная прокрутка к секции
+                setTimeout(() => {
+                    document.getElementById(subcategory).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            });
+        });
+
 
 
         // Активация первой категории
