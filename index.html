@@ -801,7 +801,7 @@
 
     <script>
         // Управление шапкой
-       /*/let lastScroll = 0;
+        let lastScroll = 0;
         const header = document.getElementById('main-header');
         const headerHeight = header.offsetHeight;
 
@@ -817,9 +817,12 @@
             }
             
             lastScroll = currentScroll;
-        });/*/
+        });
 
-       // Переключение категорий
+        // Флаг для определения, было ли переключение автоматическим
+        let isAutoSwitch = false;
+
+        // Переключение категорий
         document.querySelectorAll('.main-category-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -830,11 +833,18 @@
                 
                 this.classList.add('active');
                 const category = this.dataset.category;
-                document.getElementById(`${category}-subcategories`).classList.add('active');
+                const subcategories = document.getElementById(${category}-subcategories);
+                subcategories.classList.add('active');
                 
-               /* const firstSubBtn = document.querySelector(`#${category}-subcategories .subcategory-btn`);
-                if (firstSubBtn) firstSubBtn.click();
-                */
+                // Автоматически выбираем первую подкатегорию
+                isAutoSwitch = true;
+                const firstSubBtn = subcategories.querySelector('.subcategory-btn');
+                if (firstSubBtn) {
+                    firstSubBtn.classList.add('active');
+                    const subcategory = firstSubBtn.dataset.subcategory;
+                    document.getElementById(subcategory).classList.add('active');
+                }
+                
                 // Показываем шапку при переключении
                 header.classList.remove('hidden');
             });
@@ -850,17 +860,20 @@
                 const subcategory = this.dataset.subcategory;
                 document.getElementById(subcategory).classList.add('active');
                 
-                // Плавная прокрутка к секции
-                setTimeout(() => {
-                    document.getElementById(subcategory).scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }, 100);
+                // Плавная прокрутка к секции только если это не автоматическое переключение
+                if (!isAutoSwitch) {
+                    setTimeout(() => {
+                        document.getElementById(subcategory).scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 100);
+                }
+                
+                // Сбрасываем флаг после обработки клика
+                isAutoSwitch = false;
             });
         });
-
-
 
         // Активация первой категории
         document.querySelector('.main-category-btn.active').click();
