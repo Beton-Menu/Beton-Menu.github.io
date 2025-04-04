@@ -849,7 +849,14 @@
                 document.getElementById(subcategory).classList.add('active');
                 
                 // Плавная прокрутка к секции
-                
+                setTimeout(() => {
+                    document.getElementById(subcategory).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            });
+        });
 
         // Активация первой категории
         document.querySelector('.main-category-btn.active').click();
