@@ -799,6 +799,16 @@
         <p>©️ BETON</p>
     </footer>
 
+   <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Все метатеги и стили остаются без изменений -->
+    <!-- ... -->
+</head>
+<body>
+    <!-- Весь HTML остаётся без изменений -->
+    <!-- ... -->
+
     <script>
         // Управление шапкой
         let lastScroll = 0;
@@ -827,10 +837,12 @@
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
                 
+                // Снимаем активные классы
                 document.querySelectorAll('.main-category-btn').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.subcategories').forEach(s => s.classList.remove('active'));
                 document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
                 
+                // Активируем текущую категорию
                 this.classList.add('active');
                 const category = this.dataset.category;
                 const subcategories = document.getElementById(${category}-subcategories);
@@ -840,6 +852,7 @@
                 isAutoSwitch = true;
                 const firstSubBtn = subcategories.querySelector('.subcategory-btn');
                 if (firstSubBtn) {
+                    // Активируем первую подкатегорию и соответствующую секцию
                     firstSubBtn.classList.add('active');
                     const subcategory = firstSubBtn.dataset.subcategory;
                     document.getElementById(subcategory).classList.add('active');
@@ -852,10 +865,15 @@
 
         // Переключение подкатегорий
         document.querySelectorAll('.subcategory-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.subcategory-btn').forEach(b => b.classList.remove('active'));
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Снимаем активные классы только у подкатегорий и секций
+                const subcategoryContainer = this.closest('.subcategories');
+                subcategoryContainer.querySelectorAll('.subcategory-btn').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
                 
+                // Активируем текущую подкатегорию
                 this.classList.add('active');
                 const subcategory = this.dataset.subcategory;
                 document.getElementById(subcategory).classList.add('active');
@@ -875,8 +893,13 @@
             });
         });
 
-        // Активация первой категории
-        document.querySelector('.main-category-btn.active').click();
+        // Инициализация - активируем первую категорию
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstMainBtn = document.querySelector('.main-category-btn.active');
+            if (firstMainBtn) {
+                firstMainBtn.click();
+            }
+        });
     </script>
 </body>
 </html>
