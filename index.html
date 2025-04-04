@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <!-- Стили остаются БЕЗ ИЗМЕНЕНИЙ -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BETON | Меню</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        /* ВСЕ СТИЛИ ОСТАЮТСЯ ПРЕЖНИМИ */
         :root {
             --primary-color: #e8e8e8;
             --secondary-color: #b0b0b0;
@@ -15,20 +17,17 @@
             --border-color: #2e2e2e;
             --button-color: #333333;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Playfair Display', serif;
             background-color: var(--bg-color);
             color: var(--primary-color);
             line-height: 1.6;
         }
-
         header {
             background-color: rgba(18, 18, 18, 0.98);
             padding: 0.8rem 0;
@@ -39,21 +38,18 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.4);
             border-bottom: 1px solid var(--border-color);
         }
-
         .header-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
             text-align: center;
         }
-
         h1 {
             font-size: 1.8rem;
             color: var(--accent-color);
             margin-bottom: 0.5rem;
             letter-spacing: 1px;
         }
-
         .main-categories {
             display: flex;
             justify-content: center;
@@ -61,7 +57,6 @@
             gap: 8px;
             margin: 0.8rem 0;
         }
-
         .main-category-btn {
             padding: 0.6rem 1.2rem;
             background: var(--button-color);
@@ -73,12 +68,10 @@
             border-radius: 18px;
             transition: all 0.3s ease;
         }
-
         .main-category-btn:hover, .main-category-btn.active {
             background: var(--accent-color);
             color: #121212;
         }
-
         .subcategories {
             display: none;
             justify-content: center;
@@ -86,11 +79,9 @@
             gap: 6px;
             margin: 0.8rem 0;
         }
-
         .subcategories.active {
             display: flex;
         }
-
         .subcategory-btn {
             padding: 0.4rem 0.8rem;
             background: transparent;
@@ -102,18 +93,15 @@
             border-radius: 14px;
             transition: all 0.3s ease;
         }
-
         .subcategory-btn:hover, .subcategory-btn.active {
             border-color: var(--accent-color);
             color: var(--accent-color);
         }
-
         main {
             padding: 20px 20px 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
-
         .menu-section {
             display: none;
             background: var(--card-bg);
@@ -122,12 +110,10 @@
             margin-bottom: 2rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
-
         .menu-section.active {
             display: block;
             animation: fadeIn 0.5s ease;
         }
-
         .section-title {
             font-size: 1.8rem;
             color: var(--accent-color);
@@ -136,15 +122,12 @@
             border-bottom: 1px solid var(--border-color);
             letter-spacing: 1px;
         }
-
         .menu-group {
             margin-bottom: 2rem;
         }
-
         .menu-group:last-child {
             margin-bottom: 0;
         }
-
         .group-title {
             font-size: 1.2rem;
             color: var(--accent-color);
@@ -152,7 +135,6 @@
             padding-left: 8px;
             border-left: 3px solid var(--accent-color);
         }
-
         item {
             display: flex;
             justify-content: space-between;
@@ -161,25 +143,21 @@
             border-bottom: 1px dashed var(--border-color);
             font-family: 'Roboto Condensed', sans-serif;
         }
-
         name {
             flex: 3;
         }
-
         weight {
             flex: 1;
             text-align: right;
             color: var(--secondary-color);
             font-size: 0.85rem;
         }
-
         price {
             flex: 1;
             text-align: right;
             color: var(--accent-color);
             font-weight: 400;
         }
-
         .group-price {
             text-align: center;
             font-style: italic;
@@ -187,12 +165,10 @@
             color: var(--secondary-color);
             padding: 0.5rem;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         footer {
             text-align: center;
             padding: 2rem 0;
@@ -203,7 +179,7 @@
     </style>
 </head>
 <body>
-
+    <!-- HTML остался БЕЗ ИЗМЕНЕНИЙ -->
     <header id="main-header">
         <div class="header-content">
             <h1>BETON</h1>
@@ -241,6 +217,7 @@
             </div>
         </div>
     </header>
+
 
     <main>
         <!-- Кухня -->
@@ -796,164 +773,68 @@
     </footer>
 
      <script>
-        (function() {
-            'use strict';
-            
-            // Состояние приложения
-            const state = {
-                currentCategory: null,
-                currentSubcategory: null,
-                isAutoSwitching: false
-            };
-            
-            // DOM элементы
-            const elements = {
-                mainCategoryBtns: document.querySelectorAll('.main-category-btn'),
-                subcategoryBtns: document.querySelectorAll('.subcategory-btn'),
-                subcategoryContainers: document.querySelectorAll('.subcategories'),
-                menuSections: document.querySelectorAll('.menu-section')
-            };
-            
-            // Инициализация меню
-            function initMenu() {
-                setupEventListeners();
-                activateInitialCategory();
-            }
-            
-            // Настройка обработчиков событий
-            function setupEventListeners() {
-                // Обработчики для главных категорий
-                elements.mainCategoryBtns.forEach(btn => {
-                    btn.addEventListener('click', handleMainCategoryClick);
-                });
-                
-                // Обработчики для подкатегорий
-                elements.subcategoryBtns.forEach(btn => {
-                    btn.addEventListener('click', handleSubcategoryClick);
-                });
-            }
-            
-            // Активация начальной категории
-            function activateInitialCategory() {
-                const initialCategoryBtn = document.querySelector('.main-category-btn.active');
-                if (initialCategoryBtn) {
-                    handleMainCategoryClick({ target: initialCategoryBtn });
-                }
-            }
-            
-            // Обработчик клика по главной категории
-            function handleMainCategoryClick(event) {
-                event.preventDefault();
-                const clickedBtn = event.target;
-                
-                // Игнорируем клик по уже активной категории
-                if (clickedBtn.classList.contains('active')) return;
-                
-                // Обновляем состояние
-                state.currentCategory = clickedBtn.dataset.category;
-                state.isAutoSwitching = true;
-                
-                // Обновляем UI
-                updateActiveMainCategory(clickedBtn);
-                showSubcategories(state.currentCategory);
-                activateFirstSubcategory(state.currentCategory);
-            }
-            
-            // Обработчик клика по подкатегории
-            function handleSubcategoryClick(event) {
-                event.preventDefault();
-                const clickedBtn = event.target;
-                
-                // Игнорируем клик по уже активной подкатегории
-                if (clickedBtn.classList.contains('active')) return;
-                
-                // Обновляем состояние
-                state.currentSubcategory = clickedBtn.dataset.subcategory;
-                state.isAutoSwitching = false;
-                
-                // Обновляем UI
-                updateActiveSubcategory(clickedBtn);
-                showMenuSection(state.currentSubcategory);
-                
-                // Прокрутка только при ручном выборе
-                if (!state.isAutoSwitching) {
-                    scrollToSection(state.currentSubcategory);
-                }
-            }
-            
-            // Обновление активной главной категории
-            function updateActiveMainCategory(activeBtn) {
-                elements.mainCategoryBtns.forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                activeBtn.classList.add('active');
-            }
-            
-            // Показать подкатегории для выбранной категории
-            function showSubcategories(category) {
-                elements.subcategoryContainers.forEach(container => {
-                    container.classList.remove('active');
-                });
-                
-                const targetContainer = document.getElementById(${category}-subcategories);
-                if (targetContainer) {
-                    targetContainer.classList.add('active');
-                }
-            }
-            
-            // Активировать первую подкатегорию
-            function activateFirstSubcategory(category) {
-                const container = document.getElementById(${category}-subcategories);
-                if (container) {
-                    const firstSubBtn = container.querySelector('.subcategory-btn');
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Обработчики для главных категорий
+            const mainCategoryBtns = document.querySelectorAll('.main-category-btn');
+            mainCategoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Удаляем активный класс у всех кнопок
+                    mainCategoryBtns.forEach(b => b.classList.remove('active'));
+                    // Добавляем активный класс текущей кнопке
+                    this.classList.add('active');
+                    
+                    // Скрываем все подкатегории
+                    document.querySelectorAll('.subcategories').forEach(s => s.classList.remove('active'));
+                    // Показываем подкатегории для выбранной категории
+                    const category = this.dataset.category;
+                    document.getElementById(${category}-subcategories).classList.add('active');
+                    
+                    // Автоматически выбираем первую подкатегорию
+                    const firstSubBtn = document.querySelector(#${category}-subcategories .subcategory-btn);
                     if (firstSubBtn) {
-                        state.currentSubcategory = firstSubBtn.dataset.subcategory;
-                        updateActiveSubcategory(firstSubBtn);
-                        showMenuSection(state.currentSubcategory);
+                        // Снимаем активные классы у всех подкатегорий
+                        document.querySelectorAll('.subcategory-btn').forEach(b => b.classList.remove('active'));
+                        // Активируем первую подкатегорию
+                        firstSubBtn.classList.add('active');
+                        
+                        // Скрываем все разделы меню
+                        document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+                        // Показываем соответствующий раздел
+                        const subcategory = firstSubBtn.dataset.subcategory;
+                        document.getElementById(subcategory).classList.add('active');
                     }
-                }
-            }
-            
-            // Обновление активной подкатегории
-            function updateActiveSubcategory(activeBtn) {
-                // Снимаем активное состояние со всех подкатегорий в текущей группе
-                const container = activeBtn.closest('.subcategories');
-                container.querySelectorAll('.subcategory-btn').forEach(btn => {
-                    btn.classList.remove('active');
                 });
-                
-                // Устанавливаем активное состояние для выбранной кнопки
-                activeBtn.classList.add('active');
-            }
-            
-            // Показать соответствующую секцию меню
-            function showMenuSection(subcategory) {
-                elements.menuSections.forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                const targetSection = document.getElementById(subcategory);
-                if (targetSection) {
-                    targetSection.classList.add('active');
-                }
-            }
-            
-            // Прокрутка к секции
-            function scrollToSection(subcategory) {
-                setTimeout(() => {
-                    const section = document.getElementById(subcategory);
-                    if (section) {
-                        section.scrollIntoView({
+            });
+
+            // 2. Обработчики для подкатегорий
+            const subcategoryBtns = document.querySelectorAll('.subcategory-btn');
+            subcategoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Снимаем активные классы у всех подкатегорий в текущей группе
+                    const container = this.closest('.subcategories');
+                    container.querySelectorAll('.subcategory-btn').forEach(b => b.classList.remove('active'));
+                    // Добавляем активный класс текущей кнопке
+                    this.classList.add('active');
+                    
+                    // Скрываем все разделы меню
+                    document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+                    // Показываем соответствующий раздел
+                    const subcategory = this.dataset.subcategory;
+                    document.getElementById(subcategory).classList.add('active');
+                    
+                    // Плавная прокрутка к разделу
+                    setTimeout(() => {
+                        document.getElementById(subcategory).scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
                         });
-                    }
-                }, 100);
-            }
-            
-            // Инициализация при полной загрузке DOM
-            document.addEventListener('DOMContentLoaded', initMenu);
-        })();
+                    }, 100);
+                });
+            });
+
+            // 3. Инициализация - активируем первую категорию
+            document.querySelector('.main-category-btn.active').click();
+        });
     </script>
 </body>
 </html>
