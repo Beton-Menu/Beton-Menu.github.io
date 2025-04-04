@@ -801,7 +801,7 @@
 
     <script>
         // Управление шапкой
-      /*  let lastScroll = 0;
+       /*/let lastScroll = 0;
         const header = document.getElementById('main-header');
         const headerHeight = header.offsetHeight;
 
@@ -817,36 +817,21 @@
             }
             
             lastScroll = currentScroll;
-        });*/
-
-        // Флаг для определения, было ли переключение автоматическим
-        let isAutoSwitch = false;
+        });/*/
 
         // Переключение категорий
         document.querySelectorAll('.main-category-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Снимаем активные классы
+            btn.addEventListener('click', function() {
                 document.querySelectorAll('.main-category-btn').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.subcategories').forEach(s => s.classList.remove('active'));
                 document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
                 
-                // Активируем текущую категорию
                 this.classList.add('active');
                 const category = this.dataset.category;
-                const subcategories = document.getElementById(${category}-subcategories);
-                subcategories.classList.add('active');
+                document.getElementById(`${category}-subcategories`).classList.add('active');
                 
-                // Автоматически выбираем первую подкатегорию
-                isAutoSwitch = true;
-                const firstSubBtn = subcategories.querySelector('.subcategory-btn');
-                if (firstSubBtn) {
-                    // Активируем первую подкатегорию и соответствующую секцию
-                    firstSubBtn.classList.add('active');
-                    const subcategory = firstSubBtn.dataset.subcategory;
-                    document.getElementById(subcategory).classList.add('active');
-                }
+                const firstSubBtn = document.querySelector(`#${category}-subcategories .subcategory-btn`);
+                if (firstSubBtn) firstSubBtn.click();
                 
                 // Показываем шапку при переключении
                 header.classList.remove('hidden');
@@ -855,41 +840,26 @@
 
         // Переключение подкатегорий
         document.querySelectorAll('.subcategory-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Снимаем активные классы только у подкатегорий и секций
-                const subcategoryContainer = this.closest('.subcategories');
-                subcategoryContainer.querySelectorAll('.subcategory-btn').forEach(b => b.classList.remove('active'));
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.subcategory-btn').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
                 
-                // Активируем текущую подкатегорию
                 this.classList.add('active');
                 const subcategory = this.dataset.subcategory;
                 document.getElementById(subcategory).classList.add('active');
                 
-                // Плавная прокрутка к секции только если это не автоматическое переключение
-                if (!isAutoSwitch) {
-                    setTimeout(() => {
-                        document.getElementById(subcategory).scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }, 100);
-                }
-                
-                // Сбрасываем флаг после обработки клика
-                isAutoSwitch = false;
+                // Плавная прокрутка к секции
+                setTimeout(() => {
+                    document.getElementById(subcategory).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
             });
         });
 
-        // Инициализация - активируем первую категорию
-        document.addEventListener('DOMContentLoaded', function() {
-            const firstMainBtn = document.querySelector('.main-category-btn.active');
-            if (firstMainBtn) {
-                firstMainBtn.click();
-            }
-        });
+        // Активация первой категории
+        document.querySelector('.main-category-btn.active').click();
     </script>
 </body>
 </html>
