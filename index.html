@@ -800,89 +800,66 @@
     </footer>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // 1. Функция для переключения главных категорий
-    function switchMainCategory(clickedButton) {
-        // Снимаем активные состояния
-        document.querySelectorAll('.main-category-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        document.querySelectorAll('.subcategories').forEach(container => {
-            container.classList.remove('active');
-        });
-        
-        // Активируем выбранную категорию
-        clickedButton.classList.add('active');
-        const category = clickedButton.getAttribute('data-category');
-        const subcategories = document.getElementById(${category}-subcategories);
-        
-        if (subcategories) {
-            subcategories.classList.add('active');
-            // Активируем первую подкатегорию без скролла
-            const firstSubBtn = subcategories.querySelector('.subcategory-btn');
-            if (firstSubBtn) {
-                switchSubCategory(firstSubBtn, false);
-            }
-        }
-    }
-    
-    // 2. Функция для переключения подкатегорий
-    function switchSubCategory(clickedButton, shouldScroll = true) {
-        // Снимаем активные состояния только в текущей группе
-        const parentContainer = clickedButton.closest('.subcategories');
-        parentContainer.querySelectorAll('.subcategory-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        
-        // Активируем выбранную подкатегорию
-        clickedButton.classList.add('active');
-        const subcategory = clickedButton.getAttribute('data-subcategory');
-        
-        // Скрываем все секции меню
-        document.querySelectorAll('.menu-section').forEach(section => {
-            section.classList.remove('active');
-        });
-        
-        // Показываем нужную секцию
-        const targetSection = document.getElementById(subcategory);
-        if (targetSection) {
-            targetSection.classList.add('active');
+        // Управление шапкой
+       /*/let lastScroll = 0;
+        const header = document.getElementById('main-header');
+        const headerHeight = header.offsetHeight;
+
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset;
             
-            // Скролл только при ручном выборе
-            if (shouldScroll) {
+            if (currentScroll > lastScroll && currentScroll > headerHeight) {
+                // Прокрутка вниз - скрываем шапку
+                header.classList.add('hidden');
+            } else {
+                // Прокрутка вверх - показываем шапку
+                header.classList.remove('hidden');
+            }
+            
+            lastScroll = currentScroll;
+        });/*/
+
+        // Переключение категорий
+        document.querySelectorAll('.main-category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.main-category-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.subcategories').forEach(s => s.classList.remove('active'));
+                document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+                
+                this.classList.add('active');
+                const category = this.dataset.category;
+                document.getElementById(`${category}-subcategories`).classList.add('active');
+                
+                const firstSubBtn = document.querySelector(`#${category}-subcategories .subcategory-btn`);
+                if (firstSubBtn) firstSubBtn.click();
+                
+                // Показываем шапку при переключении
+                header.classList.remove('hidden');
+            });
+        });
+
+        // Переключение подкатегорий
+        document.querySelectorAll('.subcategory-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.subcategory-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+                
+                this.classList.add('active');
+                const subcategory = this.dataset.subcategory;
+                document.getElementById(subcategory).classList.add('active');
+                
+                // Плавная прокрутка к секции
                 setTimeout(() => {
-                    targetSection.scrollIntoView({
+                    document.getElementById(subcategory).scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
                 }, 100);
-            }
-        }
-    }
-    
-    // 3. Назначаем обработчики для главных категорий
-    document.querySelectorAll('.main-category-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            switchMainCategory(this);
+            });
         });
-    });
-    
-    // 4. Назначаем обработчики для подкатегорий
-    document.querySelectorAll('.subcategory-btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            switchSubCategory(this, true);
-        });
-    });
-    
-    // 5. Инициализация - активируем первую категорию
-    setTimeout(() => {
-        const defaultCategory = document.querySelector('.main-category-btn.active');
-        if (defaultCategory) {
-            switchMainCategory(defaultCategory);
-        }
-    }, 0);
-});
-</script>
-    </body>
+
+        // Активация первой категории
+        document.querySelector('.main-category-btn.active').click();
+    </script>
+</body>
 </html>
