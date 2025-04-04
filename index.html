@@ -821,8 +821,7 @@
 
         // Переключение категорий
         document.querySelectorAll('.main-category-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
+            btn.addEventListener('click', function() {
                 
                 document.querySelectorAll('.main-category-btn').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.subcategories').forEach(s => s.classList.remove('active'));
@@ -830,11 +829,16 @@
                 
                 this.classList.add('active');
                 const category = this.dataset.category;
-                document.getElementById(`${category}-subcategories`).classList.add('active');
+                const subcatigories = document.getElementById('${category}-subcatigories');
+                subcategories.classList.add('active');
+
                 
-               /* const firstSubBtn = document.querySelector(`#${category}-subcategories .subcategory-btn`);
-                if (firstSubBtn) firstSubBtn.click();
-                */
+               const firstSubBtn = subcategories.querySelector( '.subcategory-btn`);
+                if (firstSubBtn) {
+                                    firstSubBtn.classList.add('active');
+                                    const firstSubcategory = firstSubBtn.dataset.subcategory;
+                                    document.getElementById(firstSubCategory).classList.add('active');
+                
                 // Показываем шапку при переключении
                 header.classList.remove('hidden');
             });
