@@ -1,5 +1,4 @@
-
-        // Общий скрипт для обеих страниц
+// Общий скрипт для обеих страниц
 document.addEventListener('DOMContentLoaded', function() {
     // Для страницы меню
     if (document.querySelector('.subcategory-btn')) {
@@ -45,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Анимация кнопок навигации
+    // Анимация кнопок навигации (для обеих страниц)
     const navButtons = document.querySelectorAll('.main-category-btn');
     navButtons.forEach(btn => {
         btn.addEventListener('mouseenter', function() {
