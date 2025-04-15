@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BETON | Контакты</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <header id="main-header">
+        <div class="header-content">
+            <h1>BETON</h1>
+            <div class="page-navigation">
+                <a href="index.html" class="main-category-btn active">Контакты</a>
+                <a href="menu.html" class="main-category-btn">Меню</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="map-section active">
+            <h2 class="section-title">Мы находимся</h2>
+            <div id="map" style="width: 100%; height: 400px;"></div>
+                <p>+7(482) 245-39-69</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>©️ BETON</p>
+    </footer>
+
+    <!-- Подключаем API Яндекс.Карт -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_ключ&lang=ru_RU" type="text/javascript"></script>
+    <script src="static/js/map.js"></script>
+    <script src="static/js/script.js"></script>
+</body>
+</html>
+<script>
+    ymaps.ready(function() {
+        // Замените на координаты существующего объекта
+        var myCoords = [56.858068, 35.910105];
+
+        var myMap = new ymaps.Map("map", {
+            center: myCoords,
+            zoom: 15,
+            controls: ['zoomControl']
+        });
+
+        // Создаем метку с улучшенными настройками
+        var myPlacemark = new ymaps.Placemark(myCoords, {
+            balloonContent: 'Мы здесь!'
+        }, {
+            preset: 'islands#violetStretchyIcon',
+            iconColor: '#735184', // Фиолетовый
+            balloonShadow: true,
+            hideIconOnBalloonOpen: false,
+
+            // Анимация при наведении
+            iconShape: {
+                type: 'Circle',
+                coordinates: [0, 0],
+                radius: 20
+            }
+        });
+
+        // Добавляем анимацию пульсации
+        setInterval(function() {
+            myPlacemark.options.set('iconColor', ['#735184', '#ff00aa'][Math.round(Math.random())]);
+        }, 1000);
+
+        // Явно добавляем метку на карту
+        myMap.geoObjects.add(myPlacemark);
+
+        // Открываем балун при загрузке (для проверки)
+        myPlacemark.balloon.open();
+
+        // Обработчик клика
+        myPlacemark.events.add('click', function() {
+            var url = 'https://yandex.ru/maps/?rtext=~' +
+            myCoords.join(',') +
+            '&rtt=mt';
+            window.open(url, '_blank');
+        });
+
+        // Дополнительная проверка: выводим координаты в консоль
+        console.log('Метка создана на координатах:', myCoords);
+    });
+</script>
