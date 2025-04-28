@@ -2,11 +2,33 @@ version: '3.8'
 
 services:
   web:
-    image: nginx:stable
+    image: nginx:alpine
+    container_name: my_web_app
+    ports:
+      - "80:80"
+      - "443:443"
     volumes:
       - ./web:/usr/share/nginx/html:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
-    ports:
-      - 80:80
-    restart: always
+      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
+    restart: unless-stopped
+    networks:
+      - web-network
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: certonly --webroot --webroot-path=/var/www/certbot --email your@email.com --agree-tos --no-eff-email --force-renewal -d beton-bar.ru -d www.beton-bar.ru
+    depends_on:
+      - web
+    networks:
+      - web-network
+
+networks:
+  web-network:
+    driver: bridge
