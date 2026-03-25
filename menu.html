@@ -20,12 +20,14 @@
             </div>
             
             <div class="subcategories active" id="kitchen-subcategories">
-                <button class="subcategory-btn active" data-subcategory="snacks">Домашний хлеб</button>
-                <button class="subcategory-btn" data-subcategory="soups">Супы</button>
-                <button class="subcategory-btn" data-subcategory="starters">Холодные закуски</button>
-                <button class="subcategory-btn" data-subcategory="hot">Горячее</button>
-                <button class="subcategory-btn" data-subcategory="desserts">Верхосытки</button>
-                <button class="subcategory-btn" data-subcategory="cheif">Меню от шефа</button>
+                <button class="subcategory-btn active" data-subcategory="bread">Домашний хлеб</button>
+                <button class="subcategory-btn active" data-subcategory="dish">Тарелки</button>
+                <button class="subcategory-btn" data-subcategory="cold">Холодные закуски</button>
+                <button class="subcategory-btn" data-subcategory="hot">Горячие закуски</button>
+                <button class="subcategory-btn" data-subcategory="hearty">Сытное</button>
+                <button class="subcategory-btn" data-subcategory="snacks">С пивом</button>
+                 <button class="subcategory-btn" data-subcategory="soups">Супы</button>
+                <button class="subcategory-btn" data-subcategory="desserts">На сладкое</button>
             </div>
             
             <div class="subcategories" id="alcohol-subcategories">
@@ -53,7 +55,7 @@
 
     <main>
         <!-- Кухня -->
-        <section id="snacks" class="menu-section active">
+        <section id="bread" class="menu-section active">
             <h2 class="section-title">Домашний хлеб</h2>
             <div class="menu-group">
                 <item><name>С бужениной и вареньем из соленых огурцов</name><weight>140гр.</weight><price>230</price></item>
@@ -61,7 +63,16 @@
                 <item><name>С крошевом из копченой колбасы и домашней аджикой</name><weight>130гр.</weight><price>230</price></item>
                 <item><name>С луковым маслом и скумбрией своего посола</name><weight>140гр.</weight><price>230</price></item>
                 <item><name>С разварной говядиной и кремом из чернослива</name><weight>160гр.</weight><price>350</price></item>
-                <item><name>Хлебная тарелка с пряным маслом</name><weight>240гр.</weight><price>200</price></item>
+            </div>
+        </section>
+
+           <section id="dish" class="menu-section">
+            <h2 class="section-title">Тарелки</h2>
+            <div class="menu-group">
+                <item><name>Хлебная тарелка с намазками</name><weight>350гр.</weight><price>410</price></item>
+                <item><name>Тарелка ржаных жбенчиков</name><weight>350гр.</weight><price>410</price></item>
+                 <item><name>Сет для крепких напитков</name><weight>360гр.</weight><price>550</price></item>
+                 <item><name>Сет для сладких напитков</name><weight>310гр.</weight><price>550</price></item>
             </div>
         </section>
 
@@ -73,56 +84,53 @@
             </div>
         </section>
 
-        <section id="starters" class="menu-section">
+        <section id="cold" class="menu-section">
             <h2 class="section-title">Холодные закуски</h2>
             <div class="menu-group">
-                <item><name>Огурцы маринованные</name><weight>100гр.</weight><price>130</price></item>
-                <item><name>Оливки и маслины</name><weight>70гр.</weight><price>295</price></item>
-                <item><name>Домашняя буженина с хреном</name><weight>110гр.</weight><price>390</price></item>
-                <item><name>Говядина ростбиф</name><weight>110гр.</weight><price>490</price></item>
-                <item><name>Паштет из утки с луковым конфитюром</name><weight>200гр.</weight><price>470</price></item>
+                <item><name>Буженина с домашней зерновой горчицей</name><weight>110гр.</weight><price>370</price></item>
+                <item><name>Говядина ростбиф с джемом из чёрной смородины</name><weight>110гр.</weight><price>370</price></item>
+                <item><name>Риет из куриной печени</name><weight>200гр.</weight><price>370</price></item>
             </div>
         </section>
 
         <section id="hot" class="menu-section">
-            <h2 class="section-title">Горячее</h2>
+            <h2 class="section-title">Горячие закуски</h2>
             <div class="menu-group">
-                <item><name>Картофель печёный с розмарином</name><weight>300гр.</weight><price>150</price></item>
-                <item><name>Макароны с тушёнкой</name><weight>250гр.</weight><price>280</price></item>
-                <item><name>Блины с ветчиной и сыром</name><weight>200гр.</weight><price>300</price></item>
-                <item><name>Котлета из курицы с пюре</name><weight>250гр.</weight><price>300</price></item>
-                <item><name>Драники с беконом</name><weight>280гр.</weight><price>300</price></item>
-                <item><name>Шашлык куриный с коул-слоу</name><weight>250гр.</weight><price>380</price></item>
-                <item><name>Жбень с курицей в медово-горчичном соусе</name><weight>160гр.</weight><price>450</price></item>
-                <item><name>Жбень с ростбифом под соусом кимчи</name><weight>130гр.</weight><price>450</price></item>
-                <item><name>Жбень с креветкой в соусе манго-чили</name><weight>130гр.</weight><price>450</price></item>
+                <item><name>Мини драники</name><weight>300гр.</weight><price>330</price></item>
+                <item><name>Драники с ростбифом</name><weight>280гр.</weight><price>430</price></item>
                 <item><name>Жульен куриный с картофелем фри и мёдом</name><weight>330гр.</weight><price>400</price></item>
-                <item><name>Жульен рыбный с картофелем фри и мёдом</name><weight>330гр.</weight><price>400</price></item>
-                <item><name>Сковорода по-охотничьи</name><weight>250гр.</weight><price>490</price></item>
-                <item><name>Пельмени ручной лепки отварные со сметаной</name><weight>350гр.</weight><price>580</price></item>
-            </div>
+                <item><name>Блинивый повар</name><weight>250гр.</weight><price>390</price></item>
+                <item><name>Блины с курицей</name><weight>250гр.</weight><price>310</price></item>
+        </section>
+
+              <section id="hearty" class="menu-section">
+            <h2 class="section-title">Сытное</h2>
+            <div class="menu-group">
+                <item><name>Шашлык куриный с мини-картофелем</name><weight>300гр.</weight><price>380</price></item>
+                <item><name>Монстароны по флотски</name><weight>280гр.</weight><price>390</price></item>
+                <item><name>Лазанья с белой рыбой</name><weight>330гр.</weight><price>420</price></item>
+                <item><name>Сковородка с копчёностями</name><weight>250гр.</weight><price>490</price></item>
+                <item><name>Мясошар из свиной грудки</name><weight>250гр.</weight><price>520</price></item>
+                <item><name>Пельмени домашние</name><weight>250гр.</weight><price>580</price></item>
+        </section>
+
+              <section id="snacks" class="menu-section">
+            <h2 class="section-title">С пивом</h2>
+            <div class="menu-group">
+                <item><name>Идельные куриные крылышки</name><weight>300гр.</weight><price>390</price></item>
+                <item><name>Мини драники с сырным паштетом</name><weight>280гр.</weight><price>360</price></item>
+                <item><name>Лазанья с белой рыбой</name><weight>330гр.</weight><price>420</price></item>
+                <item><name>Бретцель-снеки с креветочной солью</name><weight>250гр.</weight><price>310</price></item>
+                <item><name>Кавардак шаварма</name><weight>250гр.</weight><price>410</price></item>
         </section>
 
         <section id="desserts" class="menu-section">
-            <h2 class="section-title">Верхосытки</h2>
+            <h2 class="section-title">На сладкое</h2>
             <div class="menu-group">
-                <item><name>Шарик мороженого</name><weight>80гр.</weight><price>100</price></item>
-                <item><name>Блины со сгущенкой</name><weight>130гр.</weight><price>180</price></item>
+                <item><name>Теремок блинчики</name><weight>80гр.</weight><price>220</price></item>
+                <item><name>"Шугараешь?" бисквит</name><weight>130гр.</weight><price>210</price></item>
                 <item><name>Песочные крендельки</name><weight>100гр.</weight><price>100</price></item>
-                <item><name>Пирожное "Картошка"</name><weight>100гр.</weight><price>180</price></item>
-            </div>
-        </section>
-
-        <section id="cheif" class="menu-section">
-            <h2 class="section-title">Меню от шефа</h2>
-            <div class="menu-group">
-                <item><name>Сет для крепких напитков</name><weight>360гр.</weight><price>550</price></item>
-                <item><name>Сет для сладких напитков</name><weight>310гр.</weight><price>550</price></item>
-                <item><name>Рагу с копёностями Селянка</name><weight>160гр.</weight><price>250</price></item>
-                <item><name>Жареный пирог с Тверским Чорыгом</name><weight>150гр.</weight><price>320</price></item>
-                <item><name>Блины с тыквенным муссом апельсиновой меренгой и копченой сметаной</name><weight>280гр.</weight><price>300</price></item>
-                 <item><name>Блины с укропным песто пармезаном и копченой сметаной</name><weight>200гр.</weight><price>300</price></item>
-            
+                <item><name>Шоколадные тру-фили</name><weight>100гр.</weight><price>290</price></item>
             </div>
         </section>
 
