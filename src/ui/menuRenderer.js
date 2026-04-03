@@ -40,7 +40,7 @@ function renderGroupItems(group) {
 
   return `
     <div class="menu-list">
-      ${hasRealTitle ? `<h3>${escapeHtml(group.title)}</h3>` : ''}
+      ${hasRealTitle ? `<h3 class="group-title">${escapeHtml(group.title)}</h3>` : ''}
       ${group.items.map(renderItem).join('')}
     </div>
   `;
