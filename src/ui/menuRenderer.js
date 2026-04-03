@@ -44,10 +44,11 @@ function renderGroupItems(group) {
 
 function renderGroupsFirstSection(section, selectedGroup, activeGroupId) {
   return `
-    <section class="menu-section" id="${escapeHtml(section.id)}">
-      <h2 class="section-title">${escapeHtml(section.title)}</h2>
-      ${section.subtitle ? `<p class="section-subtitle">${escapeHtml(section.subtitle)}</p>` : ''}
-      <div class="menu-group-nav" aria-label="Группы раздела">
+    <section class="menu-section">
+      <h2>${escapeHtml(section.title)}</h2>
+      ${section.subtitle ? `<p class="menu-section__subtitle">${escapeHtml(section.subtitle)}</p>` : ''}
+
+      <div class="menu-group-nav">
         ${section.groups
           .map((group) =>
             renderButton({
@@ -60,18 +61,16 @@ function renderGroupsFirstSection(section, selectedGroup, activeGroupId) {
           )
           .join('')}
       </div>
+
       ${
         selectedGroup
           ? `
-            <section class="menu-group menu-group--selected" data-role="group-content">
-              <h3 class="group-title">${escapeHtml(selectedGroup.title)}</h3>
+            <div class="menu-list">
               ${selectedGroup.items.map(renderItem).join('')}
-            </section>
+            </div>
           `
           : `
-            <section class="card screen-message screen-message--hint">
-              <p>${escapeHtml(section.groupSelectionHint)}</p>
-            </section>
+            <p class="menu-placeholder">${escapeHtml(section.groupSelectionHint)}</p>
           `
       }
     </section>
