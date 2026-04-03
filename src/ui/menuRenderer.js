@@ -33,7 +33,7 @@ function renderItem(item) {
   `;
 }
 
-function renderGroup(group) {
+function renderGroupItems(group) {
   return `
     <section class="menu-group">
       ${group.title ? `<h3 class="group-title">${escapeHtml(group.title)}</h3>` : ''}
@@ -42,12 +42,52 @@ function renderGroup(group) {
   `;
 }
 
-function renderSection(section) {
+function renderGroupsFirstSection(section, selectedGroup, activeGroupId) {
   return `
     <section class="menu-section" id="${escapeHtml(section.id)}">
       <h2 class="section-title">${escapeHtml(section.title)}</h2>
       ${section.subtitle ? `<p class="section-subtitle">${escapeHtml(section.subtitle)}</p>` : ''}
-      ${section.groups.map(renderGroup).join('')}
+      <div class="menu-group-nav" aria-label="Группы раздела">
+        ${section.groups
+          .map((group) =>
+            renderButton({
+              id: group.id,
+              label: group.label,
+              role: 'group',
+              activeId: activeGroupId,
+              className: 'subcategory-btn menu-group-nav__button',
+            }),
+          )
+          .join('')}
+      </div>
+      ${
+        selectedGroup
+          ? `
+            <section class="menu-group menu-group--selected" data-role="group-content">
+              <h3 class="group-title">${escapeHtml(selectedGroup.title)}</h3>
+              ${selectedGroup.items.map(renderItem).join('')}
+            </section>
+          `
+          : `
+            <section class="card screen-message screen-message--hint">
+              <p>${escapeHtml(section.groupSelectionHint)}</p>
+            </section>
+          `
+      }
+    </section>
+  `;
+}
+
+function renderSection(section, selectedGroup, activeGroupId) {
+  if (section.navigationMode === 'groups-first') {
+    return renderGroupsFirstSection(section, selectedGroup, activeGroupId);
+  }
+
+  return `
+    <section class="menu-section" id="${escapeHtml(section.id)}">
+      <h2 class="section-title">${escapeHtml(section.title)}</h2>
+      ${section.subtitle ? `<p class="section-subtitle">${escapeHtml(section.subtitle)}</p>` : ''}
+      ${section.groups.map(renderGroupItems).join('')}
     </section>
   `;
 }
@@ -83,7 +123,12 @@ export class MenuRenderer {
       )
       .join('');
 
-    this.contentContainer.innerHTML = renderSection(viewModel.activeSection);
+    this.contentContainer.innerHTML = renderSection(
+      viewModel.activeSection,
+      viewModel.selectedGroup,
+      viewModel.activeGroupId,
+    );
+
     this.footerContainer.innerHTML = `
       <p>${escapeHtml(viewModel.venue.address)}</p>
       <p>${escapeHtml(viewModel.venue.phone)}</p>
