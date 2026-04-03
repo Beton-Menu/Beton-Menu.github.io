@@ -73,6 +73,31 @@ export class MenuService {
     return section;
   }
 
+  isGroupsFirstSection(section) {
+    return section?.navigationMode === 'groups-first';
+  }
+
+  buildGroupId(sectionId, index) {
+    return `${sectionId}__group_${index}`;
+  }
+
+  getGroupsForSection(section) {
+    return (section.groups ?? []).map((group, index) => ({
+      id: this.buildGroupId(section.id, index),
+      label: group.title || `Группа ${index + 1}`,
+      title: group.title || `Группа ${index + 1}`,
+      items: group.items ?? [],
+    }));
+  }
+
+  getDefaultGroupId(section) {
+    if (!this.isGroupsFirstSection(section)) {
+      return null;
+    }
+
+    return null;
+  }
+
   getInitialState() {
     const firstCategory = this.menu.categories[0];
     const firstSection = firstCategory.sections[0];
@@ -80,15 +105,18 @@ export class MenuService {
     return {
       activeCategoryId: firstCategory.id,
       activeSectionId: firstSection.id,
+      activeGroupId: this.getDefaultGroupId(firstSection),
     };
   }
 
   changeCategory(categoryId) {
     const category = this.getCategory(categoryId);
+    const firstSection = category.sections[0];
 
     return {
       activeCategoryId: category.id,
-      activeSectionId: category.sections[0].id,
+      activeSectionId: firstSection.id,
+      activeGroupId: this.getDefaultGroupId(firstSection),
     };
   }
 
@@ -99,15 +127,39 @@ export class MenuService {
       throw new Error(`Раздел "${sectionId}" не привязан ни к одной категории.`);
     }
 
+    const section = this.getSection(sectionId);
+
     return {
       activeCategoryId: categoryId,
       activeSectionId: sectionId,
+      activeGroupId: this.getDefaultGroupId(section),
+    };
+  }
+
+  changeGroup(currentState, groupId) {
+    const section = this.getSection(currentState.activeSectionId);
+
+    if (!this.isGroupsFirstSection(section)) {
+      return currentState;
+    }
+
+    const groupExists = this.getGroupsForSection(section).some((group) => group.id === groupId);
+
+    if (!groupExists) {
+      throw new Error(`Группа "${groupId}" не найдена в разделе "${section.id}".`);
+    }
+
+    return {
+      ...currentState,
+      activeGroupId: groupId,
     };
   }
 
   buildViewModel(state) {
     const activeCategory = this.getCategory(state.activeCategoryId);
     const activeSection = this.getSection(state.activeSectionId);
+    const sectionGroups = this.getGroupsForSection(activeSection);
+    const selectedGroup = sectionGroups.find((group) => group.id === state.activeGroupId) ?? null;
 
     return {
       venue: this.getVenue(),
@@ -115,7 +167,14 @@ export class MenuService {
       sections: this.getSectionsForCategory(activeCategory.id),
       activeCategoryId: activeCategory.id,
       activeSectionId: activeSection.id,
-      activeSection,
+      activeGroupId: state.activeGroupId ?? null,
+      activeSection: {
+        ...activeSection,
+        navigationMode: activeSection.navigationMode ?? 'default',
+        groupSelectionHint: activeSection.groupSelectionHint ?? 'Выберите группу, чтобы увидеть все позиции.',
+        groups: sectionGroups,
+      },
+      selectedGroup,
     };
   }
 }
