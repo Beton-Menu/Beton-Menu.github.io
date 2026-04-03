@@ -49,8 +49,8 @@ function renderGroupItems(group) {
 function renderGroupsFirstSection(section, selectedGroup, activeGroupId) {
   return `
     <section class="menu-section">
-      <h2>${escapeHtml(section.title)}</h2>
-      ${section.subtitle ? `<p class="menu-section__subtitle">${escapeHtml(section.subtitle)}</p>` : ''}
+      <h2 class="section-title">${escapeHtml(section.title)}</h2>
+      ${section.subtitle ? `<p class="section-subtitle">${escapeHtml(section.subtitle)}</p>` : ''}
 
       <div class="menu-group-nav">
         ${section.groups
@@ -69,12 +69,14 @@ function renderGroupsFirstSection(section, selectedGroup, activeGroupId) {
       ${
         selectedGroup
           ? `
-            <div class="menu-list">
-              ${selectedGroup.items.map(renderItem).join('')}
+            <div class="menu-group-content">
+              <div class="menu-list">
+                ${selectedGroup.items.map(renderItem).join('')}
+              </div>
             </div>
           `
           : `
-            <p class="menu-placeholder">${escapeHtml(section.groupSelectionHint)}</p>
+            <p class="screen-message">${escapeHtml(section.groupSelectionHint)}</p>
           `
       }
     </section>
