@@ -91,12 +91,13 @@ export class MenuService {
   }
 
   getDefaultGroupId(section) {
-    if (!this.isGroupsFirstSection(section)) {
-      return null;
-    }
-
+  if (!this.isGroupsFirstSection(section)) {
     return null;
   }
+
+  const groups = this.getGroupsForSection(section);
+  return groups.length > 0 ? groups[0].id : null;
+}
 
   getInitialState() {
     const firstCategory = this.menu.categories[0];
