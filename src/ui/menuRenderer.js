@@ -34,11 +34,15 @@ function renderItem(item) {
 }
 
 function renderGroupItems(group) {
+  const hasRealTitle =
+    group.title &&
+    !/^Группа\s+\d+$/i.test(String(group.title).trim());
+
   return `
-    <section class="menu-group">
-      ${group.title ? `<h3 class="group-title">${escapeHtml(group.title)}</h3>` : ''}
+    <div class="menu-list">
+      ${hasRealTitle ? `<h3>${escapeHtml(group.title)}</h3>` : ''}
       ${group.items.map(renderItem).join('')}
-    </section>
+    </div>
   `;
 }
 
