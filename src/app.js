@@ -18,11 +18,13 @@ async function bootstrap() {
 
   const repository = new MenuRepository('./src/data/menu-data.json');
   const service = new MenuService(repository);
+
   const controller = new MenuController({
     service,
     renderer,
     categoriesContainer,
     subcategoriesContainer,
+    contentContainer,
   });
 
   try {
