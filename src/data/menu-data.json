@@ -531,7 +531,9 @@
                 }
               ]
             }
-          ]
+          ],
+          "navigationMode": "groups-first",
+          "groupSelectionHint": "Выберите группу, чтобы увидеть все позиции."
         },
         {
           "id": "infusions",
@@ -1049,7 +1051,9 @@
                 }
               ]
             }
-          ]
+          ],
+          "navigationMode": "groups-first",
+          "groupSelectionHint": "Выберите группу, чтобы увидеть все позиции."
         },
         {
           "id": "maceration",
