@@ -167,6 +167,18 @@ main,
   border-left: 3px solid var(--accent-color);
 }
 
+.menu-group-content .menu-item__weight,
+.menu-group-content .menu-item__price {
+  color: var(--accent-color);
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+.menu-group-content .menu-item__price {
+  font-weight: 500;
+}
+
 .menu-item {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto auto;
