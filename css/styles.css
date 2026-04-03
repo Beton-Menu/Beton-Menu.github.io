@@ -175,6 +175,16 @@ main,
   letter-spacing: 0.3px;
 }
 
+.menu-section__subtitle,
+.section-subtitle {
+  color: var(--accent-color);
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  margin: 0 0 1rem;
+}
+
 .menu-group-content .menu-item__price {
   font-weight: 500;
 }
