@@ -22,27 +22,27 @@
                 {
                   "name": "С бужениной и вареньем из соленых огурцов",
                   "weight": "140гр.",
-                  "price": "230"
+                  "price": "250"
                 },
                 {
                   "name": "С домашним салом икрой из свеклы и грецким орехом",
                   "weight": "150гр.",
-                  "price": "230"
+                  "price": "250"
                 },
                 {
                   "name": "С крошевом из копченой колбасы и домашней аджикой",
                   "weight": "130гр.",
-                  "price": "230"
+                  "price": "250"
                 },
                 {
                   "name": "С луковым маслом и скумбрией своего посола",
                   "weight": "140гр.",
-                  "price": "230"
+                  "price": "250"
                 },
                 {
                   "name": "С разварной говядиной и кремом из чернослива",
                   "weight": "160гр.",
-                  "price": "350"
+                  "price": "250"
                 }
               ]
             }
@@ -58,25 +58,11 @@
               "title": null,
               "items": [
                 {
-                  "name": "Хлебная тарелка с намазками",
-                  "weight": "350гр.",
-                  "price": "410"
-                },
-                {
                   "name": "Тарелка ржаных жбенчиков",
                   "weight": "350гр.",
                   "price": "410"
-                },
-                {
-                  "name": "Сет для крепких напитков",
-                  "weight": "360гр.",
-                  "price": "550"
-                },
-                {
-                  "name": "Сет для сладких напитков",
-                  "weight": "310гр.",
-                  "price": "550"
                 }
+                
               ]
             }
           ]
@@ -173,11 +159,6 @@
                   "price": "390"
                 },
                 {
-                  "name": "Лазанья с белой рыбой",
-                  "weight": "330гр.",
-                  "price": "420"
-                },
-                {
                   "name": "Сковородка с копчёностями",
                   "weight": "250гр.",
                   "price": "490"
@@ -216,11 +197,6 @@
                   "price": "360"
                 },
                 {
-                  "name": "Лазанья с белой рыбой",
-                  "weight": "330гр.",
-                  "price": "420"
-                },
-                {
                   "name": "Бретцель-снеки с креветочной солью",
                   "weight": "250гр.",
                   "price": "310"
@@ -244,7 +220,7 @@
               "title": null,
               "items": [
                 {
-                  "name": "Борщ",
+                  "name": "Сезонный суп",
                   "weight": "350гр.",
                   "price": "390"
                 },
@@ -275,11 +251,6 @@
                   "name": "\"Шугараешь?\" бисквит",
                   "weight": "130гр.",
                   "price": "210"
-                },
-                {
-                  "name": "Песочные крендельки",
-                  "weight": "100гр.",
-                  "price": "100"
                 },
                 {
                   "name": "Шоколадные тру-фили",
@@ -351,11 +322,6 @@
                   "price": null
                 },
                 {
-                  "name": "Мелисса",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Можжевельник",
                   "weight": null,
                   "price": null
@@ -396,32 +362,12 @@
                   "price": null
                 },
                 {
-                  "name": "Гороховый суп",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Греча",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Грибной суп",
                   "weight": null,
                   "price": null
                 },
                 {
                   "name": "Рассольник",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Свекольник",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Харчо",
                   "weight": null,
                   "price": null
                 },
@@ -551,11 +497,6 @@
               "title": "Ягодные",
               "items": [
                 {
-                  "name": "Арбуз",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Брусника",
                   "weight": null,
                   "price": null
@@ -577,11 +518,6 @@
                 },
                 {
                   "name": "Ежевика",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Жимолость",
                   "weight": null,
                   "price": null
                 },
@@ -661,17 +597,7 @@
                   "price": null
                 },
                 {
-                  "name": "Ананас",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Апельсин",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Банан",
                   "weight": null,
                   "price": null
                 },
@@ -712,6 +638,11 @@
                 },
                 {
                   "name": "Лайм",
+                  "weight": null,
+                  "price": null
+                },
+                {
+                  "name": "Лаймчелло",
                   "weight": null,
                   "price": null
                 },
@@ -781,11 +712,6 @@
                   "price": null
                 },
                 {
-                  "name": "Брауни на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Бузина на сливках",
                   "weight": null,
                   "price": null
@@ -796,17 +722,7 @@
                   "price": null
                 },
                 {
-                  "name": "Дыня на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Ежевика на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Клубника на сливках",
                   "weight": null,
                   "price": null
                 },
@@ -817,11 +733,6 @@
                 },
                 {
                   "name": "Клюква на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Малина на сливках",
                   "weight": null,
                   "price": null
                 },
@@ -881,17 +792,12 @@
                   "price": null
                 },
                 {
-                  "name": "Персидские специи",
+                  "name": "Штрудель",
                   "weight": null,
                   "price": null
                 },
                 {
                   "name": "Солёная карамель",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Шоколадное печенье",
                   "weight": null,
                   "price": null
                 },
@@ -951,11 +857,6 @@
               "title": "Расхожие",
               "items": [
                 {
-                  "name": "Бабл-Гам",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Барбариска",
                   "weight": null,
                   "price": null
@@ -996,15 +897,16 @@
                   "price": null
                 },
                 {
-                  "name": "Тигровый сахар",
+                  "name": "Липтон",
                   "weight": null,
                   "price": null
                 },
                 {
-                  "name": "Халва",
+                  "name": "Тигровый сахар",
                   "weight": null,
                   "price": null
                 }
+
               ]
             },
             {
@@ -1209,11 +1111,6 @@
                   "price": null
                 },
                 {
-                  "name": "Кофейный ликёр",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Клюквейный ликёр",
                   "weight": null,
                   "price": null
@@ -1287,22 +1184,12 @@
               "title": null,
               "items": [
                 {
-                  "name": "Апельсин с корицей на роме",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Имбирь-Лимон-Мёд на роме",
                   "weight": null,
                   "price": null
                 },
                 {
                   "name": "Маракуйя на роме",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Меласса-Корица-Чили на роме",
                   "weight": null,
                   "price": null
                 },
