@@ -713,62 +713,17 @@
               "title": "Сливочные (200₽)",
               "items": [
                 {
-                  "name": "Ананас на сливках",
+                  "name": "Сливочная оливка",
                   "weight": null,
                   "price": null
                 },
                 {
-                  "name": "Бузина на сливках",
+                  "name": "Сливочная кукуруза",
                   "weight": null,
                   "price": null
                 },
                 {
-                  "name": "Вишня на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Ежевика на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Клубника-Мята на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Клюква на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Роза на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Слива на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Фиалка на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Хвоя на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Чёрная сморода на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Черника на сливках",
+                  "name": "Сливочная греча",
                   "weight": null,
                   "price": null
                 }
@@ -1804,11 +1759,6 @@
                   "price": "540"
                 },
                 {
-                  "name": "Gletcher Iron Woods",
-                  "weight": null,
-                  "price": "450"
-                },
-                {
                   "name": "Gletcher Ausweis",
                   "weight": null,
                   "price": "490"
@@ -1819,14 +1769,14 @@
                   "price": "490"
                 },
                 {
-                  "name": "Дверь в Тверь светлое",
-                  "weight": null,
-                  "price": "400"
-                },
-                {
                   "name": "Вест-Кост ИПА светлое",
                   "weight": null,
                   "price": "500"
+                },
+                {
+                  "name": "Стдр Брюман Эпл Ран",
+                  "weight": null,
+                  "price": "590"
                 }
               ]
             }
