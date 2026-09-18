@@ -358,11 +358,6 @@
               "title": "Обеденные",
               "items": [
                 {
-                  "name": "Бородинский хлеб",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Борщ",
                   "weight": null,
                   "price": null
