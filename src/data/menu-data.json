@@ -283,11 +283,6 @@
               "title": "Травяные",
               "items": [
                 {
-                  "name": "Анисовка",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Байкал",
                   "weight": null,
                   "price": null
@@ -319,11 +314,6 @@
                 },
                 {
                   "name": "Зубровка",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Крапивница",
                   "weight": null,
                   "price": null
                 },
@@ -362,38 +352,18 @@
                   "weight": null,
                   "price": null
                 },
-                {
-                  "name": "Грибной суп",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Рассольник",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Щи",
-                  "weight": null,
-                  "price": null
-                }
               ]
             },
             {
               "title": "Ореховые",
               "items": [
                 {
-                  "name": "Жёлудь Юпитера",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Семена Сосны",
                   "weight": null,
                   "price": null
                 }
               ]
-            },
+            }
             {
               "title": "Овощные",
               "items": [
@@ -433,22 +403,7 @@
                   "price": null
                 },
                 {
-                  "name": "Дыня",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Ирга",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Рабарбар",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Рябинушка",
                   "weight": null,
                   "price": null
                 },
@@ -459,11 +414,6 @@
                 },
                 {
                   "name": "Черёмуха",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Шиповник",
                   "weight": null,
                   "price": null
                 }
@@ -499,11 +449,6 @@
               "items": [
                 {
                   "name": "Брусника",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Бузина",
                   "weight": null,
                   "price": null
                 },
@@ -548,27 +493,7 @@
                   "price": null
                 },
                 {
-                  "name": "Малина-Имбирь",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Облепиха",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Голубика",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Ревень",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Сморода красная",
                   "weight": null,
                   "price": null
                 },
@@ -598,11 +523,6 @@
                   "price": null
                 },
                 {
-                  "name": "Апельсин",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Грейпфрут",
                   "weight": null,
                   "price": null
@@ -614,16 +534,6 @@
                 },
                 {
                   "name": "Гуава",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Дыня",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Инжир",
                   "weight": null,
                   "price": null
                 },
@@ -658,11 +568,6 @@
                   "price": null
                 },
                 {
-                  "name": "Манго",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Мандарин",
                   "weight": null,
                   "price": null
@@ -678,17 +583,7 @@
                   "price": null
                 },
                 {
-                  "name": "Ранет",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Тропико",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Финики",
                   "weight": null,
                   "price": null
                 },
@@ -729,11 +624,6 @@
               "items": [
                 {
                   "name": "Булочка с корицей",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Доширак",
                   "weight": null,
                   "price": null
                 },
@@ -818,16 +708,6 @@
                   "price": null
                 },
                 {
-                  "name": "Голубая малина на сливках",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Горький шоколад",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Дубайский шоколад",
                   "weight": null,
                   "price": null
@@ -848,21 +728,10 @@
                   "price": null
                 },
                 {
-                  "name": "Мишка косолапый",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Липтон",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Тигровый сахар",
                   "weight": null,
                   "price": null
                 }
-
               ]
             },
             {
@@ -870,11 +739,6 @@
               "items": [
                 {
                   "name": "Брусника",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Мандарин",
                   "weight": null,
                   "price": null
                 },
@@ -889,22 +753,12 @@
               "title": "Ореховые",
               "items": [
                 {
-                  "name": "Арахис",
-                  "weight": null,
-                  "price": null
-                },
-                {
                   "name": "Грецкий орех",
                   "weight": null,
                   "price": null
                 },
                 {
                   "name": "Ирис-Пралине",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Пекан",
                   "weight": null,
                   "price": null
                 },
@@ -950,11 +804,6 @@
                 },
                 {
                   "name": "Греча",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Дыня",
                   "weight": null,
                   "price": null
                 },
@@ -1037,6 +886,11 @@
                   "price": null
                 },
                 {
+                  "name": "Арбузный ликёр",
+                  "weight": null,
+                  "price": null
+                },
+                {
                   "name": "Брусничный ликёр",
                   "weight": null,
                   "price": null
@@ -1073,11 +927,6 @@
                 },
                 {
                   "name": "Ликёр Клюква-Розмарин",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Ликёр Лимон-Базилик",
                   "weight": null,
                   "price": null
                 },
@@ -1131,49 +980,6 @@
           ]
         },
         {
-          "id": "rums",
-          "label": "Ромовые настои",
-          "title": "Ромовые настои",
-          "subtitle": "250₽ (50мл)",
-          "groups": [
-            {
-              "title": null,
-              "items": [
-                {
-                  "name": "Имбирь-Лимон-Мёд на роме",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Маракуйя на роме",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Миндаль на роме",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Розмарин на роме",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Розмарин с ананасом на роме",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Яблоко с корицей на роме",
-                  "weight": null,
-                  "price": null
-                }
-              ]
-            }
-          ]
-        },
-        {
           "id": "special",
           "label": "Особые",
           "title": "Особые",
@@ -1184,16 +990,6 @@
               "items": [
                 {
                   "name": "Голубая малина",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Забористый доширак",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Огненный квас",
                   "weight": null,
                   "price": null
                 },
@@ -1325,26 +1121,6 @@
                 }
               ]
             },
-            {
-              "title": "900₽",
-              "items": [
-                {
-                  "name": "Ангелы Чарли",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Три Товарища",
-                  "weight": null,
-                  "price": null
-                },
-                {
-                  "name": "Французский опохмел",
-                  "weight": null,
-                  "price": null
-                }
-              ]
-            }
           ]
         },
         {
@@ -1370,31 +1146,6 @@
                   "name": "Наши традии премиум",
                   "weight": null,
                   "price": "130"
-                },
-                {
-                  "name": "Finlandia",
-                  "weight": null,
-                  "price": "390"
-                }
-              ]
-            },
-            {
-              "title": "Вереск (25мл)",
-              "items": [
-                {
-                  "name": "Горькая Тверская",
-                  "weight": null,
-                  "price": "100"
-                },
-                {
-                  "name": "Старый Кашин",
-                  "weight": null,
-                  "price": "119"
-                },
-                {
-                  "name": "Старый Травник",
-                  "weight": null,
-                  "price": "119"
                 }
               ]
             },
@@ -1402,40 +1153,10 @@
               "title": "Виски (50мл)",
               "items": [
                 {
-                  "name": "Barclays Blended",
-                  "weight": null,
-                  "price": "300"
-                },
-                {
-                  "name": "The Whistler Calvados Cask",
-                  "weight": null,
-                  "price": "685"
-                },
-                {
-                  "name": "Akashi Blended",
-                  "weight": null,
-                  "price": "760"
-                },
-                {
-                  "name": "Bowsaw Bourbon Whiskey",
-                  "weight": null,
-                  "price": "850"
-                },
-                {
-                  "name": "Chivas Regal",
-                  "weight": null,
-                  "price": "850"
-                },
-                {
                   "name": "Paul John Nirvana",
                   "weight": null,
                   "price": "890"
                 },
-                {
-                  "name": "Laphroaig Select Cask",
-                  "weight": null,
-                  "price": "1180"
-                }
               ]
             },
             {
@@ -1447,11 +1168,6 @@
                   "price": "240"
                 },
                 {
-                  "name": "Brunel Napoleon VSOP",
-                  "weight": null,
-                  "price": "290"
-                },
-                {
                   "name": "Barsol Primero Quebranta",
                   "weight": null,
                   "price": "460"
@@ -1461,11 +1177,6 @@
             {
               "title": "Коньяк (50мл)",
               "items": [
-                {
-                  "name": "Roulette V.S",
-                  "weight": null,
-                  "price": "660"
-                },
                 {
                   "name": "Roulette V.S De Luxe",
                   "weight": null,
@@ -1486,11 +1197,6 @@
             {
               "title": "Ром (50мл)",
               "items": [
-                {
-                  "name": "Takamaka Blanc",
-                  "weight": null,
-                  "price": "300"
-                },
                 {
                   "name": "Legendario de Cana Natural",
                   "weight": null,
@@ -1529,32 +1235,12 @@
               ]
             },
             {
-              "title": "Джин (50мл)",
-              "items": [
-                {
-                  "name": "Citadelle Original",
-                  "weight": null,
-                  "price": "690"
-                },
-                {
-                  "name": "Brockmans",
-                  "weight": null,
-                  "price": "780"
-                }
-              ]
-            },
-            {
               "title": "Текила (50мл)",
               "items": [
                 {
                   "name": "Don Alejandro silver",
                   "weight": null,
                   "price": "280"
-                },
-                {
-                  "name": "Corralejo Blanco",
-                  "weight": null,
-                  "price": "660"
                 }
               ]
             }
@@ -1605,22 +1291,12 @@
                   "price": "230"
                 },
                 {
-                  "name": "Крымский Парус",
-                  "weight": null,
-                  "price": "250"
-                },
-                {
                   "name": "Портвейн Крымский белый",
                   "weight": null,
                   "price": "300"
                 },
                 {
                   "name": "Херес Массандра белое",
-                  "weight": null,
-                  "price": "300"
-                },
-                {
-                  "name": "Чёрный полковник",
                   "weight": null,
                   "price": "300"
                 },
@@ -1769,7 +1445,7 @@
                   "price": "500"
                 },
                 {
-                  "name": "Стдр Брюман Эпл Ран",
+                  "name": "Сидр Брюман Эпл Ран",
                   "weight": null,
                   "price": "590"
                 }
