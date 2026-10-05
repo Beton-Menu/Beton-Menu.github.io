@@ -78,7 +78,11 @@ h1 {
 .main-category-btn,
 .subcategory-btn {
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -167,12 +171,12 @@ main,
   border-left: 3px solid var(--accent-color);
 }
 
-.menu-group-content .menu-item__weight,
 .menu-group-content .menu-item__price {
   color: var(--accent-color);
   font-family: 'Playfair Display', serif;
   font-size: 1rem;
   letter-spacing: 0.3px;
+  font-weight: 500;
 }
 
 .menu-section__subtitle,
@@ -185,17 +189,9 @@ main,
   margin: 0 0 1rem;
 }
 
-.menu-group-content .menu-item__price {
-  font-weight: 500;
-}
-
 .menu-item {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  gap: 0.75rem;
-  align-items: baseline;
-  margin-bottom: 0.8rem;
-  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.7rem;
   border-bottom: 1px dashed var(--border-color);
   font-family: 'Roboto Condensed', sans-serif;
 }
@@ -204,19 +200,34 @@ main,
   margin-bottom: 0;
 }
 
-.menu-item__name {
-  min-width: 0;
+.menu-item__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: baseline;
 }
 
-.menu-item__weight {
-  color: var(--secondary-color);
-  font-size: 0.85rem;
-  white-space: nowrap;
+.menu-item__name {
+  min-width: 0;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .menu-item__price {
   color: var(--accent-color);
   white-space: nowrap;
+  font-size: 1rem;
+}
+
+.menu-item__description {
+  margin-top: 0.15rem;
+  padding-right: 2rem;
+  color: var(--secondary-color);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.88rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 .screen-message {
@@ -290,12 +301,8 @@ main,
     padding: 1.25rem;
   }
 
-  .menu-item {
-    grid-template-columns: 1fr auto;
-  }
-
-  .menu-item__weight {
-    grid-column: 1 / -1;
-    text-align: left;
+  .menu-item__description {
+    padding-right: 0;
+    font-size: 0.85rem;
   }
 }
