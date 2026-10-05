@@ -26,9 +26,16 @@ function renderButton({ id, label, role, activeId, className }) {
 function renderItem(item) {
   return `
     <article class="menu-item">
-      <span class="menu-item__name">${escapeHtml(item.name)}</span>
-      ${item.weight ? `<span class="menu-item__weight">${escapeHtml(item.weight)}</span>` : '<span></span>'}
-      ${item.price ? `<span class="menu-item__price">${escapeHtml(item.price)}</span>` : '<span></span>'}
+      <div class="menu-item__top">
+        <span class="menu-item__name">${escapeHtml(item.name)}</span>
+        ${item.price ? `<span class="menu-item__price">${escapeHtml(item.price)}</span>` : ''}
+      </div>
+
+      ${
+        item.description
+          ? `<div class="menu-item__description">${escapeHtml(item.description)}</div>`
+          : ''
+      }
     </article>
   `;
 }
